@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+
+@import './base.css' layer(components);
+@import './navigation.css' layer(components);
+@import './documentation.css' layer(components);
+
+@layer base {
+  :root {
+    --font-sans: 'Nunito Sans', sans-serif;
+    --font-mono: monospace;
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer utilities {
+  .transition {
+    transition: all 0.5s ease-out;
+  }
+  .transition-fast {
+    transition: all 0.2s ease-out;
+  }
+}
+
+/* Syntax Highlight by Prism */
+/* https://prismjs.com/ */
+
+/* You can customize the theme of the Prism syntax highlighter below. Adjust colors, backgrounds, and styles as needed for your site. */
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #e5e7eb;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  background: transparent;
+}
