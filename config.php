@@ -25,7 +25,7 @@ return [
             'siteDescription' => 'Un potente framework de WordPress para desarrolladores - Documentación',
         ]
     ],
-    'currentLang' => 'en', // Default language
+    'currentLang' => 'en', // Will be overridden dynamically
 
     // Version configuration
     'versions' => [
@@ -67,8 +67,9 @@ return [
     'docsearchApiKey' => 'local-search-enabled',
     'docsearchIndexName' => 'antonella-docs',
 
-    // navigation menu
+    // navigation menu (English by default, Spanish will be loaded conditionally)
     'navigation' => require_once('navigation.php'),
+    'navigation_es' => require_once('navigation.es.php'),
 
     // helpers
     'isActive' => function ($page, $path) {
@@ -85,9 +86,9 @@ return [
         return Str::startsWith($path, 'http') ? $path : '/' . trimPath($path);
     },
 
-    // Algolia DocSearch configuration
+    // Algolia DocSearch configuration - DISABLED (using local search)
     'docsearch' => [
-        'enabled' => env('DOCSEARCH_APP_ID') && env('DOCSEARCH_KEY') && env('DOCSEARCH_INDEX'),
+        'enabled' => false, // Disabled to use local search instead
         'appId' => env('DOCSEARCH_APP_ID'),
         'apiKey' => env('DOCSEARCH_KEY'),
         'indexName' => env('DOCSEARCH_INDEX'),

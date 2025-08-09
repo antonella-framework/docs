@@ -111,21 +111,12 @@ The Antonella Framework follows a clear and organized structure:
 - **`Assets/`** - 🖼️ Static files (CSS, JS, images)
 - **`languages/`** - 🌍 Internationalization files
 
-### Core Files
-
-- **`Config.php`** - ⚙️ Central configuration
-- **`Security.php`** - 🔒 Security functions
-- **`Api.php`** - 🌐 REST API endpoints
-
 ## Next Steps
 
 1. **[Complete Installation](/docs/installation)** - Detailed installation guide
 2. **[Basic Setup](/docs/basic-setup)** - Configure your first plugin
 3. **[Creating Controllers](/docs/creating-controllers)** - Learn to create controllers
 4. **[Practical Examples](/docs/controller-examples)** - See real examples
-
-
-```
 
 ## Support and Community
 

@@ -504,7 +504,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet" />
+        <!-- DocSearch CSS removed - using local search -->
 
         @viteRefresh()
         <link rel="stylesheet" href="{{ vite('source/_assets/css/main.css') }}">
@@ -527,22 +527,22 @@
                 </div>
 
                 <div class="flex flex-1 justify-end items-center text-right md:pl-10">
-                    <!-- DocSearch Widget -->
-                    @if ($page->docsearch['enabled'])
-                        <div class="mr-4">
-                            <div id="docsearch"></div>
-                        </div>
-                    @endif
+                    <!-- Search Widget -->
+                    <div class="mr-4">
+                        @include('_nav.search-input')
+                    </div>
                     
                     @include('_nav.version-selector')
                     
                     <!-- Language Selector -->
                     <div class="relative ml-4">
                         <button 
-                            onclick="toggleLanguageDropdown()" 
+                            id="language-selector-btn"
                             class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
                             type="button"
                             title="Change language"
+                            aria-haspopup="true"
+                            aria-expanded="false"
                         >
                             <span id="current-lang-flag" class="text-base">🇺🇸</span>
                             <span id="current-lang-name" class="text-gray-900 dark:text-white font-medium">EN</span>
@@ -551,7 +551,7 @@
                             </svg>
                         </button>
                         
-                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 hidden z-50 overflow-hidden backdrop-blur-sm">
+                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 hidden z-50 overflow-hidden backdrop-blur-sm" role="menu" aria-labelledby="language-selector-btn">
                             <a href="/" class="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm">
                                 <span class="text-lg">🇺🇸</span>
                                 <span class="font-medium">English</span>
@@ -602,7 +602,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <!-- DocSearch JS removed - using local search -->
 
     <script>
         // Theme toggle implementation
@@ -657,71 +657,101 @@
             initTheme();
         });
 
-        // Simple Language Selector
-        function toggleLanguageDropdown() {
-            console.log('Language dropdown clicked');
-            const dropdown = document.getElementById('lang-dropdown');
-            if (dropdown) {
-                dropdown.classList.toggle('hidden');
-                console.log('Dropdown toggled. Hidden:', dropdown.classList.contains('hidden'));
-            } else {
-                console.error('Dropdown not found');
-            }
-        }
-
-        // Initialize language display on page load
+        // Language Selector Implementation
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Initializing language selector');
-            
-            const currentPath = window.location.pathname;
+            const languageButton = document.getElementById('language-selector-btn');
+            const dropdown = document.getElementById('lang-dropdown');
             const flagElement = document.getElementById('current-lang-flag');
             const nameElement = document.getElementById('current-lang-name');
             
-            console.log('Current path:', currentPath);
+            if (!languageButton || !dropdown) {
+                console.error('Language selector elements not found');
+                return;
+            }
+            
+            // Initialize language display based on current path
+            const currentPath = window.location.pathname;
             
             if (currentPath.startsWith('/es/') || currentPath === '/es') {
-                console.log('Spanish page detected');
                 if (flagElement) flagElement.textContent = '🇪🇸';
                 if (nameElement) nameElement.textContent = 'ES';
             } else {
-                console.log('English page detected');
                 if (flagElement) flagElement.textContent = '🇺🇸';
                 if (nameElement) nameElement.textContent = 'EN';
             }
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('lang-dropdown');
-            const button = event.target.closest('button[onclick="toggleLanguageDropdown()"]');
             
-            if (dropdown && !button && !dropdown.contains(event.target)) {
-                dropdown.classList.add('hidden');
-            }
+            // Add click event listener to button
+            languageButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleLanguageDropdown();
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!languageButton.contains(event.target) && !dropdown.contains(event.target)) {
+                    if (!dropdown.classList.contains('hidden')) {
+                        dropdown.classList.add('hidden');
+                        languageButton.setAttribute('aria-expanded', 'false');
+                        dropdown.style.transition = '';
+                        dropdown.style.opacity = '';
+                        dropdown.style.transform = '';
+                    }
+                }
+            });
+            
+            // Handle keyboard navigation
+            languageButton.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleLanguageDropdown();
+                }
+                if (e.key === 'Escape') {
+                    if (!dropdown.classList.contains('hidden')) {
+                        dropdown.classList.add('hidden');
+                        languageButton.setAttribute('aria-expanded', 'false');
+                        dropdown.style.transition = '';
+                        dropdown.style.opacity = '';
+                        dropdown.style.transform = '';
+                    }
+                }
+            });
         });
 
-        // Initialize DocSearch
-        @if ($page->docsearch['enabled'])
-        docsearch({
-            appId: '{{ $page->docsearch['appId'] }}',
-            apiKey: '{{ $page->docsearch['apiKey'] }}',
-            indexName: '{{ $page->docsearch['indexName'] }}',
-            container: '#docsearch',
-            placeholder: '{{ $page->docsearch['placeholder'] }}',
-            debug: {{ $page->docsearch['debug'] ? 'true' : 'false' }},
-            searchParameters: {
-                facetFilters: ['language:{{ $page->currentLang ?? 'en' }}']
-            },
-            transformItems(items) {
-                return items.map((item) => {
-                    // Ensure URLs are properly formatted
-                    const url = new URL(item.url);
-                    item.url = url.pathname + url.hash;
-                    return item;
-                });
+        // Toggle function
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('lang-dropdown');
+            const button = document.getElementById('language-selector-btn');
+            
+            if (dropdown && button) {
+                const isHidden = dropdown.classList.contains('hidden');
+                
+                if (isHidden) {
+                    // Show dropdown
+                    dropdown.classList.remove('hidden');
+                    button.setAttribute('aria-expanded', 'true');
+                    
+                    // Add smooth entrance animation
+                    dropdown.style.opacity = '0';
+                    dropdown.style.transform = 'translateY(-10px)';
+                    dropdown.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+                    
+                    requestAnimationFrame(() => {
+                        dropdown.style.opacity = '1';
+                        dropdown.style.transform = 'translateY(0)';
+                    });
+                } else {
+                    // Hide dropdown
+                    dropdown.classList.add('hidden');
+                    button.setAttribute('aria-expanded', 'false');
+                    dropdown.style.transition = '';
+                    dropdown.style.opacity = '';
+                    dropdown.style.transform = '';
+                }
             }
-        });
-        @endif
+        }
+
+        // Local Search is initialized in the search-input.blade.php component
     </script>
 
     @stack('scripts')
