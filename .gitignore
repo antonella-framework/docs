@@ -5,3 +5,10 @@
 .env
 npm-debug.log
 hot
+/build_local/
+/build_production/
+/cache/
+/.idea/
+/.vscode/
+/.DS_Store
+*.log

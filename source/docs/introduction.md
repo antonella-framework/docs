@@ -52,7 +52,7 @@ composer global require cehojac/antonella-installer
 antonella new my-plugin
 
 # Or manual installation
-composer require cehojac/antonella-framework
+git clone https://github.com/cehojac/antonella-framework-for-wp.git
 ```
 
 ## Your First Plugin
@@ -61,16 +61,40 @@ Once installed, you'll have a structure like this:
 
 ```
 my-plugin/
-├── src/
-│   ├── Controllers/
-│   ├── Admin/
-│   ├── helpers/
-│   ├── Config.php
-│   └── Security.php
+├── assets/
+├── docker/
+├── languages/
 ├── resources/
 │   └── views/
-├── Assets/
+├── src/
+│   ├── Admin/
+│   ├── Controllers/
+│   ├── Helpers/
+│   ├── Api.php
+│   ├── Config.php
+│   ├── Desactivate.php
+│   ├── Gutenberg.php
+│   ├── helpers.php
+│   ├── Hooks.php
+│   ├── Init.php
+│   ├── Install.php
+│   ├── Language.php
+│   ├── PostTypes.php
+│   ├── Request.php
+│   ├── Security.php
+│   ├── Shortcodes.php
+│   ├── Start.php
+│   ├── Unisntall.php
+│   ├── Users.php
+│   └── Widgets.php
+├── storage/
 ├── vendor/
+├── antonella
+├── index.php
+├── docker-compose.yml
+├── composer.json
+├── readme.md
+├── readme.txt
 └── my-plugin.php
 ```
 
@@ -95,14 +119,17 @@ The Antonella Framework follows a clear and organized structure:
 
 ## Next Steps
 
-1. **[Complete Installation](installation)** - Detailed installation guide
-2. **[Basic Setup](basic-setup)** - Configure your first plugin
-3. **[Creating Controllers](creating-controllers)** - Learn to create controllers
-4. **[Practical Examples](controller-examples)** - See real examples
+1. **[Complete Installation](/docs/installation)** - Detailed installation guide
+2. **[Basic Setup](/docs/basic-setup)** - Configure your first plugin
+3. **[Creating Controllers](/docs/creating-controllers)** - Learn to create controllers
+4. **[Practical Examples](/docs/controller-examples)** - See real examples
+
+
+```
 
 ## Support and Community
 
-- 📖 **Documentation**: You're here, explore all sections
+- 📖 **Documentation**: [antonellaframework.com/docs](https://antonellaframework.com/docs)
 - 🐛 **Report Bugs**: [GitHub Issues](https://github.com/cehojac/antonella-framework-for-wp/issues)
 - 💬 **Community**: [GitHub Discussions](https://github.com/cehojac/antonella-framework-for-wp/discussions)
 - 🌐 **Website**: [antonellaframework.com](https://antonellaframework.com)

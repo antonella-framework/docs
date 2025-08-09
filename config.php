@@ -94,4 +94,16 @@ return [
         'placeholder' => 'Search documentation...',
         'debug' => false,
     ],
+
+    // Build settings
+    'build' => [
+        'destination' => 'build_local',
+        'pretty' => true,
+        'safe' => true
+    ],
+    'cleanup_paths' => [
+        'build_local',
+        'build_production',
+        'cache'
+    ]
 ];
