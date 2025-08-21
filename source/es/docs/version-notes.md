@@ -35,7 +35,7 @@ Esta página contiene las notas de lanzamiento y changelog para todas las versio
 
 ### Integración con Docker
 - ✅ Soporte nativo de Docker para desarrollo
-- 🔧 Configuración fácil con `docker-compose up`
+- 🔧 Configuración fácil con `php antonella docker`
 - 🔧 Desarrollo en tiempo real en `http://localhost:8080`
 - 🔧 Comando de consola: `php antonella docker`
 

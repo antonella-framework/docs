@@ -27,6 +27,10 @@
                        class="btn-outline font-semibold rounded-lg py-3 px-8 text-center transition-colors duration-200">
                         GitHub
                     </a>
+                    <a href="https://deepwiki.com/cehojac/antonella-framework-for-wp" title="Documentación técnica avanzada (Deep Wiki)" 
+                       class="btn-outline font-semibold rounded-lg py-3 px-8 text-center transition-colors duration-200">
+                        Deep Wiki (Avanzado)
+                    </a>
                 </div>
 
                 <div class="flex items-center space-x-4 text-sm">

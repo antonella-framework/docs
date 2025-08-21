@@ -25,7 +25,7 @@ Before starting, make sure you have installed:
 
 2. **Start the Docker environment:**
    ```bash
-   docker-compose up -d
+   php antonella docker  # add -d to run detached if preferred
    ```
 
 3. **Access your WordPress site:**
@@ -59,19 +59,9 @@ The Docker setup includes:
 
 ## Useful Commands
 
-### Start the environment
+### Start or refresh the environment
 ```bash
-docker-compose up -d
-```
-
-### Stop the environment
-```bash
-docker-compose down
-```
-
-### View logs
-```bash
-docker-compose logs -f
+php antonella docker
 ```
 
 ### Access WordPress container
@@ -81,8 +71,7 @@ docker-compose exec wordpress bash
 
 ### Reset the environment
 ```bash
-docker-compose down -v
-docker-compose up -d
+php antonella docker
 ```
 
 ## Development Workflow
@@ -113,7 +102,7 @@ sudo chown -R $USER:$USER wordpress/
 If WordPress can't connect to the database, wait a few minutes for MySQL to fully initialize, then restart:
 
 ```bash
-docker-compose restart
+php antonella docker
 ```
 
 ## Integration with Antonella Console

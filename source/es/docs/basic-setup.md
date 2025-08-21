@@ -1,27 +1,27 @@
 ---
-title: Basic Setup
-description: Configure your first plugin with Antonella Framework
+title: Configuración Básica
+description: Configura tu primer plugin con Antonella Framework
 extends: _layouts.documentation
 section: content
 ---
 
-# Basic Setup
+# Configuración Básica
 
-Configure your first plugin with Antonella Framework and understand the core configuration options.
+Configura tu primer plugin con Antonella Framework y entiende las opciones clave de configuración.
 
-## Configuration Overview
+## Visión General de Configuración
 
-Antonella Framework uses a centralized configuration system through the `Config.php` file. This file contains all the essential settings for your plugin, including custom post types, taxonomies, shortcodes, API endpoints, and more.
+Antonella Framework utiliza un sistema de configuración centralizado a través del archivo `Config.php`. Este archivo contiene los ajustes esenciales de tu plugin, incluyendo menús de administración, custom post types, taxonomías, shortcodes, endpoints de API y más.
 
-### Configuration File Location
+### Ubicación del Archivo de Configuración
 
 ```
 src/Config.php
 ```
 
-## Basic Configuration Structure
+## Estructura Básica de Configuración
 
-Here's the basic structure of the `Config.php` file:
+Esta es la estructura básica del archivo `Config.php`:
 
 ```php
 <?php
@@ -30,18 +30,18 @@ namespace YourPlugin;
 
 class Config
 {
-    // Persistent plugin options
+    // Opciones persistentes del plugin
     public $plugin_options = [];
 
-    // Internationalization and prefix
+    // Internacionalización y prefijo
     public $language_name = 'antonella';
     public $plugin_prefix = 'ch_nella';
 
-    // Request handling
+    // Manejo de solicitudes
     public $post = [];
     public $get = [];
 
-    // WordPress hooks
+    // Hooks de WordPress
     public $add_filter = [];
     public $add_action = [];
 
@@ -53,17 +53,17 @@ class Config
     public $api_endpoint_version = 1;
     public $api_endpoints_functions = [];
 
-    // Gutenberg blocks
+    // Bloques Gutenberg
     public $gutenberg_blocks = [];
 
     // Dashboard
     public $dashboard = [];
     public $files_dashboard = [];
 
-    // Plugin menu
+    // Menú del plugin
     public $plugin_menu = [];
 
-    // Custom Post Types and Taxonomies
+    // Custom Post Types y Taxonomías
     public $post_types = [];
     public $taxonomies = [];
 
@@ -72,9 +72,9 @@ class Config
 }
 ```
 
-## Plugin Options (Persisted Settings)
+## Opciones del Plugin (Persistentes)
 
-Store key/value options in the WordPress options table via `Config`:
+Almacena opciones clave/valor en la tabla de opciones de WordPress mediante `Config`:
 
 ```php
 public $plugin_options = [
@@ -82,20 +82,18 @@ public $plugin_options = [
 ];
 ```
 
-These are saved as WordPress options and can be read/updated in your code.
+## Idioma y Prefijo
 
-## Language and Prefix
-
-Define a text domain and a unique plugin prefix:
+Define un dominio de texto y un prefijo único para tu plugin:
 
 ```php
 public $language_name = 'antonella';
 public $plugin_prefix = 'ch_nella';
 ```
 
-## Handling POST and GET Requests
+## Manejo de Solicitudes POST y GET
 
-Route specific POST/GET keys to controller methods:
+Enruta claves específicas de POST/GET a métodos de controladores:
 
 ```php
 public $post = [
@@ -103,13 +101,13 @@ public $post = [
 ];
 
 public $get = [
-    // 'my_action' => __NAMESPACE__ . '\\Controllers\\ExampleController::handle_get',
+    // 'mi_accion' => __NAMESPACE__ . '\\Controllers\\ExampleController::handle_get',
 ];
 ```
 
-## Hooks: add_action and add_filter
+## Hooks: add_action y add_filter
 
-Register WordPress hooks from configuration:
+Registra hooks de WordPress desde la configuración:
 
 ```php
 public $add_action = [
@@ -121,30 +119,30 @@ public $add_filter = [
 ];
 ```
 
-## Plugin Menu Configuration
+## Configuración del Menú del Plugin
 
-Configure your plugin's admin menu:
+Configura el menú de administración de tu plugin:
 
 ```php
 'plugin_menu' => [
-    'page_title' => 'My Plugin Settings',
-    'menu_title' => 'My Plugin',
-    'capability' => 'manage_options',
-    'menu_slug' => 'my-plugin-settings',
-    'icon_url' => 'dashicons-admin-plugins',
-    'position' => 30,
+    'page_title'   => 'Ajustes de Mi Plugin',
+    'menu_title'   => 'Mi Plugin',
+    'capability'   => 'manage_options',
+    'menu_slug'    => 'mi-plugin-ajustes',
+    'icon_url'     => 'dashicons-admin-plugins',
+    'position'     => 30,
     'submenus' => [
         [
-            'page_title' => 'General Settings',
-            'menu_title' => 'Settings',
+            'page_title' => 'Ajustes Generales',
+            'menu_title' => 'Ajustes',
             'capability' => 'manage_options',
-            'menu_slug' => 'my-plugin-general',
+            'menu_slug'  => 'mi-plugin-general',
         ],
         [
-            'page_title' => 'Advanced Options',
-            'menu_title' => 'Advanced',
+            'page_title' => 'Opciones Avanzadas',
+            'menu_title' => 'Avanzado',
             'capability' => 'manage_options',
-            'menu_slug' => 'my-plugin-advanced',
+            'menu_slug'  => 'mi-plugin-avanzado',
         ],
     ],
 ],
@@ -152,7 +150,7 @@ Configure your plugin's admin menu:
 
 ## Custom Post Types
 
-Define custom post types for your plugin:
+Define custom post types para tu plugin:
 
 ```php
 'post_types' => [
@@ -178,9 +176,9 @@ Define custom post types for your plugin:
 ],
 ```
 
-## Custom Taxonomies
+## Taxonomías Personalizadas
 
-Create custom taxonomies:
+Crea taxonomías personalizadas:
 
 ```php
 'taxonomies' => [
@@ -209,7 +207,7 @@ Create custom taxonomies:
 
 ## Shortcodes
 
-Define shortcodes for your plugin:
+Define shortcodes para tu plugin:
 
 ```php
 'shortcodes' => [
@@ -234,9 +232,9 @@ Define shortcodes for your plugin:
 ],
 ```
 
-## API Endpoints
+## Endpoints de API
 
-Configure REST API endpoints:
+Configura endpoints de la REST API:
 
 ```php
 'api_endpoints' => [
@@ -257,9 +255,9 @@ Configure REST API endpoints:
 ],
 ```
 
-## Gutenberg Blocks
+## Bloques Gutenberg
 
-Define custom Gutenberg blocks:
+Define bloques Gutenberg personalizados:
 
 ```php
 'gutenberg_blocks' => [
@@ -288,13 +286,13 @@ Define custom Gutenberg blocks:
 ],
 ```
 
-## Default Controllers
+## Controladores por Defecto
 
-Antonella Framework provides several default controllers that you can extend:
+Antonella Framework proporciona varios controladores por defecto que puedes extender:
 
 ### ExampleController
 
-The `ExampleController` demonstrates basic controller functionality:
+El `ExampleController` demuestra funcionalidad básica de un controlador:
 
 ```php
 <?php
@@ -313,23 +311,23 @@ class ExampleController extends Controller
     
     public function init()
     {
-        // Initialize your controller logic here
+        // Inicializa la lógica de tu controlador aquí
         add_action('init', [$this, 'handle_init']);
     }
     
     public function handle_init()
     {
-        // Handle WordPress init action
+        // Maneja la acción init de WordPress
     }
 }
 ```
 
-## Database Tables
+## Tablas de Base de Datos
 
-If your plugin needs custom database tables, you can create them during plugin activation:
+Si tu plugin necesita tablas personalizadas, puedes crearlas durante la activación del plugin:
 
 ```php
-// In your main plugin file or activation hook
+// En tu archivo principal del plugin o hook de activación
 register_activation_hook(__FILE__, 'create_plugin_tables');
 
 function create_plugin_tables()
@@ -353,9 +351,9 @@ function create_plugin_tables()
 }
 ```
 
-## Dashboard Widgets
+## Widgets del Dashboard
 
-Add custom widgets to the WordPress Dashboard:
+Agrega widgets personalizados al Dashboard de WordPress:
 
 ```php
 public $dashboard = [[
@@ -367,17 +365,17 @@ public $dashboard = [[
 ]];
 ```
 
-Optionally load files for dashboard usage via `files_dashboard`.
+Opcionalmente, carga archivos para el Dashboard mediante `files_dashboard`.
 
 ## Widgets
 
-Register widget classes for your plugin. You can scaffold with the console:
+Registra clases de widgets para tu plugin. Puedes generarlas con la consola:
 
 ```bash
 php antonella Widget "NAME_OF_WIDGET"
 ```
 
-Then register the class:
+Luego registra la clase:
 
 ```php
 public $widgets = [
@@ -385,21 +383,21 @@ public $widgets = [
 ];
 ```
 
-## Next Steps
+## Próximos Pasos
 
-Once you have your basic configuration set up:
+Una vez que tengas tu configuración básica lista:
 
-1. **[Creating Controllers](creating-controllers)** - Learn to create custom controllers
-2. **[Working with Views](working-with-views)** - Create templates and views
-3. **[Testing Your Plugin](localhost-testing)** - Use the Docker environment for testing
-4. **[Controller Examples](controller-examples)** - See practical examples
+1. **[Creación de Controladores](/es/docs/creating-controllers)** - Aprende a crear controladores personalizados
+2. **[Trabajo con Vistas](/es/docs/working-with-views)** - Crea plantillas y vistas
+3. **[Probar tu Plugin](/es/docs/localhost-testing)** - Usa el entorno Docker para pruebas
+4. **[Ejemplos de Controladores](/es/docs/controller-examples)** - Ve ejemplos prácticos
 
-## Configuration Best Practices
+## Mejores Prácticas de Configuración
 
-1. **Keep it organized**: Group related configurations together
-2. **Use descriptive names**: Make your configuration self-documenting
-3. **Validate input**: Always validate and sanitize configuration values
-4. **Environment-specific**: Use different configs for different environments
-5. **Security first**: Always consider security implications of your configuration
+1. **Mantén orden**: Agrupa configuraciones relacionadas
+2. **Usa nombres descriptivos**: Que la configuración se explique por sí sola
+3. **Valida la entrada**: Siempre valida y sanitiza valores
+4. **Entornos**: Adapta la config según el entorno de despliegue
+5. **Seguridad primero**: Considera implicancias de seguridad en tu configuración
 
-Need help with configuration? Check our [troubleshooting guide](troubleshooting) or visit our [GitHub repository](https://github.com/cehojac/antonella-framework-for-wp).
+¿Necesitas ayuda con la configuración? Revisa nuestra **[guía de solución de problemas](/es/docs/troubleshooting)** o visita nuestro **[repositorio en GitHub](https://github.com/cehojac/antonella-framework-for-wp)**.

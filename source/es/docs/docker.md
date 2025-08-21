@@ -25,7 +25,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 2. **Inicia el entorno Docker:**
    ```bash
-   docker-compose up -d
+   php antonella docker  # agrega -d para modo detach si lo prefieres
    ```
 
 3. **Accede a tu sitio WordPress:**
@@ -59,19 +59,9 @@ La configuración Docker incluye:
 
 ## Comandos Útiles
 
-### Iniciar el entorno
+### Iniciar o refrescar el entorno
 ```bash
-docker-compose up -d
-```
-
-### Detener el entorno
-```bash
-docker-compose down
-```
-
-### Ver logs
-```bash
-docker-compose logs -f
+php antonella docker
 ```
 
 ### Acceder al contenedor WordPress
@@ -81,8 +71,7 @@ docker-compose exec wordpress bash
 
 ### Resetear el entorno
 ```bash
-docker-compose down -v
-docker-compose up -d
+php antonella docker
 ```
 
 ## Flujo de Desarrollo

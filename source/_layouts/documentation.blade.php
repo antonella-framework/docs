@@ -16,6 +16,13 @@
         </nav>
 
         <div class="DocSearch-content w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
+            <div class="mb-6 p-4 rounded-lg border border-yellow-300 bg-yellow-50 text-gray-900 dark:bg-gray-800 dark:border-yellow-600 dark:text-gray-100">
+                @if ($isSpanish)
+                    <strong>Docs técnicas avanzadas:</strong> consulta la <a href="https://deepwiki.com/cehojac/antonella-framework-for-wp" class="underline text-yellow-700 dark:text-yellow-400 hover:text-yellow-800 dark:hover:text-yellow-300" target="_blank" rel="noopener">Deep Wiki</a> para patrones internos, arquitectura, decisiones de diseño y guías para usuarios avanzados.
+                @else
+                    <strong>Advanced technical docs:</strong> check the <a href="https://deepwiki.com/cehojac/antonella-framework-for-wp" class="underline text-yellow-700 dark:text-yellow-400 hover:text-yellow-800 dark:hover:text-yellow-300" target="_blank" rel="noopener">Deep Wiki</a> for internals, architecture, design decisions, and advanced guides.
+                @endif
+            </div>
             @yield('content')
         </div>
     </div>

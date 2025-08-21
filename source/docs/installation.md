@@ -66,89 +66,15 @@ composer install
 php antonella namespace MyPlugin
 ```
 
-## Method 2: Manual Installation
+## Method 2: Composer (Alternative)
 
-If you prefer more control over the installation process:
+If you prefer using Composer directly (Laravel style):
 
-### Step 1: Create plugin structure
-
-```bash
-# Create plugin directory
-mkdir my-plugin
-cd my-plugin
-
-# Create composer.json file
-composer init
-```
-
-### Step 2: Install Antonella Framework
+### Create a new plugin project with Composer
 
 ```bash
-composer require cehojac/antonella-framework
-```
-
-### Step 3: Create basic structure
-
-```bash
-# Create necessary directories
-mkdir src
-mkdir src/Controllers
-mkdir src/Admin
-mkdir src/helpers
-mkdir resources
-mkdir resources/views
-mkdir Assets
-mkdir Assets/css
-mkdir Assets/js
-mkdir Assets/images
-```
-
-### Step 4: Create main plugin file
-
-Create `my-plugin.php` in the root:
-
-```php
-<?php
-/**
- * Plugin Name: My Plugin
- * Description: My first plugin with Antonella Framework
- * Version: 1.0.0
- * Author: Your Name
- * License: GPL v2 or later
- */
-
-// Prevent direct access
-if (!defined('ABSPATH')) {
-    exit;
-}
-
-// Define plugin constants
-define('MY_PLUGIN_VERSION', '1.0.0');
-define('MY_PLUGIN_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('MY_PLUGIN_PLUGIN_URL', plugin_dir_url(__FILE__));
-
-// Load Composer autoloader
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require_once __DIR__ . '/vendor/autoload.php';
-} else {
-    add_action('admin_notices', function() {
-        echo '<div class="notice notice-error"><p>Error: Composer autoloader not found. Run <code>composer install</code> in the plugin directory.</p></div>';
-    });
-    return;
-}
-
-// Initialize the plugin
-function my_plugin_init() {
-    try {
-        // Here you'll initialize your plugin with Antonella Framework
-        // new MyPlugin\Core\Plugin();
-    } catch (Exception $e) {
-        add_action('admin_notices', function() use ($e) {
-            echo '<div class="notice notice-error"><p>Error initializing plugin: ' . esc_html($e->getMessage()) . '</p></div>';
-        });
-    }
-}
-add_action('plugins_loaded', 'my_plugin_init');
+composer create-project --prefer-dist cehojac/antonella-framework-for-wp my-awesome-plugin
+cd my-awesome-plugin
 ```
 
 ## Project Structure
@@ -157,24 +83,41 @@ After installation, you'll have this structure:
 
 ```
 my-plugin/
-├── src/                     # 🎮 Framework source code
-│   ├── Controllers/         # Controllers
-│   ├── Admin/              # wp-admin functions
-│   ├── helpers/            # Utilities and helpers
-│   ├── Config.php          # Central configuration
-│   ├── Security.php        # Security
-│   └── Api.php            # REST API
+├── assets/                 # 🖼️ Static assets (css, js, images)
+├── docker/                 # 🐳 Docker environment
+├── languages/              # 🌍 Translations
 ├── resources/              # 👁️ Views and templates
-│   ├── views/
-│   └── templates/
-├── Assets/                 # 🖼️ Static files
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── languages/              # 🌍 Language files
+│   └── views/
+├── src/                    # 🎮 Framework source code
+│   ├── Admin/              # 🛠️ Admin area hooks
+│   ├── Controllers/        # 🎯 MVC Controllers
+│   ├── Helpers/            # 🧰 Helper utilities
+│   ├── Api.php             # ⚙️ REST API bootstrap
+│   ├── Config.php          # ⚙️ Central configuration
+│   ├── Desactivate.php     # ⚙️ Deactivation routines
+│   ├── Gutenberg.php       # ⚙️ Gutenberg blocks integration
+│   ├── helpers.php         # ⚙️ Global helper functions
+│   ├── Hooks.php           # ⚙️ WP hooks wiring
+│   ├── Init.php            # ⚙️ Core initializer
+│   ├── Install.php         # ⚙️ Installation routines
+│   ├── Language.php        # ⚙️ i18n helpers
+│   ├── PostTypes.php       # ⚙️ Custom post types
+│   ├── Request.php         # ⚙️ Request/HTTP utilities
+│   ├── Security.php        # ⚙️ Security module
+│   ├── Shortcodes.php      # ⚙️ Shortcodes registration
+│   ├── Start.php           # ⚙️ App entrypoint
+│   ├── Unisntall.php       # ⚙️ Uninstall routines
+│   ├── Users.php           # ⚙️ User management
+│   └── Widgets.php         # ⚙️ Widgets registration
+├── storage/                # 🗄️ Cache/storage
 ├── vendor/                 # 📦 Composer dependencies
-├── my-plugin.php          # 🚀 Main plugin file
-└── composer.json          # 📋 Composer configuration
+├── antonella               # 🔧 CLI/utility
+├── index.php               # 🚀 Front controller (if applicable)
+├── docker-compose.yml      # 🐳 Docker services
+├── composer.json           # 📋 Composer config
+├── readme.md               # 📖 Project readme
+├── readme.txt              # 📖 WP readme
+└── my-plugin.php           # 🚀 Main plugin file
 ```
 
 ## Testing and Development Environment
@@ -200,8 +143,8 @@ Antonella Framework includes a complete Docker environment for testing and local
 ### Using the testing environment
 
 ```bash
-# Start the environment (first time may take a few minutes)
-docker-compose up -d
+# Start the Docker environment with Antonella CLI (first time may take a few minutes)
+php antonella docker
 
 # Access the site
 # URL: http://localhost:8080
@@ -209,8 +152,8 @@ docker-compose up -d
 # User: test
 # Password: test
 
-# Stop the environment
-docker-compose down
+# WordPress testing plugins are auto-installed and enabled:
+# query-monitor, debug-bar, theme-check, plugin-check, developer
 ```
 
 ## Verify Installation

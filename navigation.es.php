@@ -5,6 +5,8 @@ return [
         'url' => 'es/docs/introduction',
         'children' => [
             'Introducción' => 'es/docs/introduction',
+            'Instalación' => 'es/docs/installation',
+            'Configuración Básica' => 'es/docs/basic-setup',
         ],
     ],
     'Herramientas de Desarrollo' => [

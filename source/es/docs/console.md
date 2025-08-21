@@ -26,11 +26,15 @@ Empaqueta tu plugin en un archivo ZIP distribuible, excluyendo archivos de desar
 php antonella makeup
 ```
 
-**Qué hace:**
-- Crea un archivo ZIP con el nombre de tu plugin
-- Excluye archivos de desarrollo (`.git`, `node_modules`, `docker`, etc.)
-- Elimina archivos de testing y build
-- Genera un paquete de plugin listo para producción
+**Qué hace (según el script de consola):**
+- Crea un ZIP con el nombre del directorio del proyecto.
+- Excluye archivos y directorios de desarrollo o inseguros.
+- Produce un paquete seguro para instalar en cualquier sitio WordPress.
+
+**Ejemplos de exclusiones:**
+- Archivos: `.gitignore`, `.gitattributes`, configs de CI, `composer.json`, `composer.lock`, `package-lock.json`, `antonella` (consola), `README*`, `CHANGELOG.md`, `LICENSE`, `.env*`, `docker-compose.yaml`, `docker`.
+- Directorios base: `.git/`, `.github/`, `.claude/`, `.vscode/`, `wp-test/`, `docker/`, `node_modules/`, `wordpress/`, `docs/`, `test/`.
+- Subrutas de vendor: `vlucas`, `squizlabs`, `phpunit`, `theseer`, `nikic`, `phar-io`, `myclabs`, `symfony/console`, `antonella-framework`.
 
 **Salida:** `nombre-de-tu-plugin.zip`
 
@@ -123,9 +127,16 @@ Cambia el namespace de tu proyecto plugin.
 php antonella namespace NuevoNamespace
 ```
 
+Nota: También puedes ejecutar el comando sin argumento para autogenerar un namespace a partir de tu proyecto (por ejemplo, basado en el nombre del directorio).
+
+```bash
+php antonella namespace
+# Autogenera un namespace (p. ej., MYNAMESPACE)
+```
+
 **Ejemplo:**
 ```bash
-php antonella namespace MiEmpresa\\MiPlugin
+php antonella namespace MYNAMESPACE
 ```
 
 Actualiza todos los archivos PHP con el nuevo namespace.
@@ -136,13 +147,11 @@ Actualiza todos los archivos PHP con el nuevo namespace.
 Gestiona el entorno Docker para desarrollo.
 
 ```bash
-php antonella docker [acción]
+php antonella docker [-d]
 ```
 
-**Acciones disponibles:**
-- `up` - Iniciar contenedores Docker
-- `down` - Detener contenedores Docker
-- `restart` - Reiniciar contenedores
+Ejecuta el entorno Docker para desarrollo de WordPress.
+Usa `-d` para ejecutarlo en modo detach.
 
 ---
 
@@ -210,7 +219,7 @@ php antonella help
 
 ```bash
 # Configura tu namespace
-php antonella namespace MiEmpresa\\MiPlugin
+php antonella namespace MYNAMESPACE
 
 # Crea tu primer controlador
 php antonella make ControladorInicio
@@ -226,7 +235,7 @@ php antonella helper HelperCadenas
 
 ```bash
 # Iniciar entorno Docker
-php antonella docker up
+php antonella docker
 
 # Desarrollar tus componentes
 php antonella make ControladorUsuario
@@ -247,23 +256,46 @@ php antonella makeup
 # Tu plugin.zip está listo para distribución
 ```
 
-## Estructura de Archivos
+## Contenido del Paquete (ZIP)
 
-Cuando usas comandos de consola Antonella, los archivos se crean en esta estructura:
+El comando `makeup` crea `nombre-de-tu-plugin.zip` con la misma estructura base de instalación, menos los archivos/directorios excluidos por `antonella`:
 
 ```
 tu-plugin/
-├── app/
-│   ├── Controllers/     # Generado por 'make'
-│   ├── Helpers/         # Generado por 'helper'
-│   ├── Widgets/         # Generado por 'widget'
-│   ├── PostTypes/       # Generado por 'cpt'
-│   └── Blocks/          # Generado por 'block'
 ├── assets/
 ├── languages/
-├── antonella            # Script de consola
+├── resources/
+│   └── views/
+├── src/
+│   ├── Admin/
+│   ├── Controllers/
+│   ├── Helpers/
+│   ├── Api.php
+│   ├── Config.php
+│   ├── Desactivate.php
+│   ├── Gutenberg.php
+│   ├── helpers.php
+│   ├── Hooks.php
+│   ├── Init.php
+│   ├── Install.php
+│   ├── Language.php
+│   ├── PostTypes.php
+│   ├── Request.php
+│   ├── Security.php
+│   ├── Shortcodes.php
+│   ├── Start.php
+│   ├── Unisntall.php
+│   ├── Users.php
+│   └── Widgets.php
+├── storage/
+├── vendor/              # Dependencias de producción de Composer
+├── index.php            # Si aplica
 └── tu-plugin.php        # Archivo principal del plugin
 ```
+
+Notas:
+- El ZIP omite artefactos de desarrollo como `.git/`, `node_modules/`, `docker/`, configs de CI, `.env*`, etc.
+- Se excluyen algunas subrutas de `vendor` usadas para desarrollo/testing para mantener el paquete liviano y seguro.
 
 ## Manejo de Errores
 
@@ -299,7 +331,7 @@ php antonella cpt Cosa
 ### 3. **Prueba Antes de Construir**
 ```bash
 # Siempre prueba en entorno Docker
-php antonella docker up
+php antonella docker
 
 # Luego construye para producción
 php antonella makeup
@@ -308,7 +340,7 @@ php antonella makeup
 ### 4. **Mantén tu Namespace Actualizado**
 ```bash
 # Actualiza namespace al cambiar estructura del proyecto
-php antonella namespace TuEmpresa\\TuPlugin
+php antonella namespace MYNAMESPACE
 ```
 
 ## Integración con IDE

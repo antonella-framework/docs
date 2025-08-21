@@ -35,7 +35,7 @@ This page contains the release notes and changelog for all versions of Antonella
 
 ### Docker Integration
 - ✅ Native Docker support for development
-- 🔧 Easy setup with `docker-compose up`
+- 🔧 Easy setup with `php antonella docker`
 - 🔧 Real-time development at `http://localhost:8080`
 - 🔧 Console command: `php antonella docker`
 

@@ -103,11 +103,8 @@ cd /path/to/your/plugin
 ### Step 2: Start the Environment
 
 ```bash
-# Start all services (first time may take a few minutes)
-docker-compose up -d
-
-# View logs (optional)
-docker-compose logs -f
+# Start the testing environment (first time may take a few minutes)
+php antonella docker
 ```
 
 ### Step 3: Access the Site
@@ -128,7 +125,7 @@ Once the containers are running:
 # Edit files in src/, resources/, etc.
 
 # 2. Restart containers to apply changes
-docker-compose restart
+php antonella docker
 
 # 3. Test in browser
 # Visit http://localhost:8080
@@ -330,27 +327,15 @@ ports:
 ### Container Won't Start
 
 ```bash
-# Check container status
-docker-compose ps
-
-# View detailed logs
-docker-compose logs wordpress
-docker-compose logs db
-
-# Restart services
-docker-compose down
-docker-compose up -d
+# Relaunch environment
+php antonella docker
 ```
 
 ### Database Connection Issues
 
 ```bash
-# Check database container
-docker-compose logs db
-
-# Reset database
-docker-compose down -v  # WARNING: This deletes all data
-docker-compose up -d
+# Relaunch environment
+php antonella docker
 ```
 
 ### Plugin Not Loading
@@ -371,9 +356,8 @@ docker-compose up -d
 ### 2. Clean Environment
 
 ```bash
-# Reset environment regularly
-docker-compose down -v
-docker-compose up -d
+# Regularly relaunch the environment when needed
+php antonella docker
 ```
 
 ### 3. Version Control
@@ -388,19 +372,12 @@ docker-compose up -d
 - Keep notes of common issues
 - Share testing results with your team
 
-## Stopping the Environment
+## Refreshing the Environment
 
-When you're done testing:
+When you're done or want to refresh, simply rerun:
 
 ```bash
-# Stop containers (keeps data)
-docker-compose stop
-
-# Stop and remove containers (keeps volumes)
-docker-compose down
-
-# Stop and remove everything (deletes all data)
-docker-compose down -v
+php antonella docker
 ```
 
 ## Next Steps
