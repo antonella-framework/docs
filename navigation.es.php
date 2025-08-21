@@ -13,6 +13,9 @@ return [
         'url' => 'es/docs/console',
         'children' => [
             'Consola Antonella' => 'es/docs/console',
+            'Bloques Gutenberg' => 'es/docs/blocks',
+            'Sistema Blade' => 'es/docs/blade',
+            'Paquetes Externos' => 'es/docs/external-packages',
             'Entorno Docker' => 'es/docs/docker',
             'Notas de Versión' => 'es/docs/version-notes',
         ],

@@ -11,7 +11,7 @@ This page contains the release notes and changelog for all versions of Antonella
 
 ## Version 1.9 (Current)
 
-**Release Date:** 2024
+**Release Date:** 2025
 
 ### New Features
 - ✅ **Complete Documentation Site** - New Jigsaw-based documentation with multilingual support

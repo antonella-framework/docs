@@ -11,7 +11,7 @@ Esta página contiene las notas de lanzamiento y changelog para todas las versio
 
 ## Versión 1.9 (Actual)
 
-**Fecha de Lanzamiento:** 2024
+**Fecha de Lanzamiento:** 2025
 
 ### Nuevas Características
 - ✅ **Sitio de Documentación Completo** - Nueva documentación basada en Jigsaw con soporte multiidioma
