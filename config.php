@@ -98,11 +98,12 @@ return [
 
     // Build settings
     'build' => [
-        'destination' => 'build_local',
+        'destination' => env('BUILD_DEST', 'build_local'),
         'pretty' => true,
         'safe' => true
     ],
     'cleanup_paths' => [
+        env('BUILD_DEST', 'build_local'),
         'build_local',
         'build_production',
         'cache'

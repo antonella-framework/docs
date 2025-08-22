@@ -312,7 +312,7 @@ class ExampleController extends Controller
     public function init()
     {
         // Inicializa la lógica de tu controlador aquí
-        add_action('init', [$this, 'handle_init']);
+        // El registro de hooks se hace en Config.php (no registrar aquí)
     }
     
     public function handle_init()
@@ -320,6 +320,14 @@ class ExampleController extends Controller
         // Maneja la acción init de WordPress
     }
 }
+```
+
+Registro en Config.php:
+
+```php
+public $add_action = [
+    ['init', __NAMESPACE__.'\\Controllers\\ExampleController@handle_init', 10, 0],
+];
 ```
 
 ## Tablas de Base de Datos

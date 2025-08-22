@@ -314,7 +314,7 @@ class ExampleController extends Controller
     public function init()
     {
         // Initialize your controller logic here
-        add_action('init', [$this, 'handle_init']);
+        // Hook registration is done in Config.php (do not register hooks here)
     }
     
     public function handle_init()
@@ -322,6 +322,14 @@ class ExampleController extends Controller
         // Handle WordPress init action
     }
 }
+```
+
+Config registration (in Config.php):
+
+```php
+public $add_action = [
+    ['init', __NAMESPACE__.'\\Controllers\\ExampleController@handle_init', 10, 0],
+];
 ```
 
 ## Database Tables

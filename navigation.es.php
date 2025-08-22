@@ -17,6 +17,8 @@ return [
             'Sistema Blade' => 'es/docs/blade',
             'Paquetes Externos' => 'es/docs/external-packages',
             'Entorno Docker' => 'es/docs/docker',
+            'Creación de Controladores' => 'es/docs/creating-controllers',
+            'Ejemplos de Controladores' => 'es/docs/controller-examples',
             'Notas de Versión' => 'es/docs/version-notes',
         ],
     ],
