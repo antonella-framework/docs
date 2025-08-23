@@ -109,6 +109,23 @@
                 color: #f1f5f9 !important;
             }
 
+            /* Improve contrast for subtitles in dark mode */
+            .dark h2,
+            .dark h3,
+            .dark h4,
+            .dark h5,
+            .dark h6 {
+                color: #e2e8f0 !important; /* slate-200 */
+            }
+
+            /* Override common Tailwind dark text utilities used on headings */
+            .dark .text-blue-900,
+            .dark .text-gray-900,
+            .dark .text-gray-800,
+            .dark .text-gray-700 {
+                color: #e2e8f0 !important;
+            }
+
             /* Theme toggle button styles */
             .theme-toggle {
                 position: relative;
