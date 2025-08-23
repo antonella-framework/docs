@@ -1,26 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" class="transition-colors duration-300">
+<html lang="@php echo ((strpos($page->getPath(), '/es/') === 0 || $page->getPath() === '/es') ? 'es' : 'en'); @endphp" class="transition-colors duration-300">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="{{ $page->description ?? $page->siteDescription }}">
+        @php
+            $isEs = (strpos($page->getPath(), '/es/') === 0 || $page->getPath() === '/es');
+            $lang = $isEs ? 'es' : 'en';
+            $localized = $page->languages[$lang] ?? [];
+            $siteNameLoc = $localized['siteName'] ?? $page->siteName;
+            $siteDescLoc = $localized['siteDescription'] ?? ($page->siteDescription ?? '');
 
-        <meta property="og:site_name" content="{{ $page->siteName }}"/>
-        <meta property="og:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $page->siteName }}"/>
-        <meta property="og:description" content="{{ $page->description ?? $page->siteDescription }}"/>
+            $base = rtrim($page->baseUrl, '/');
+            $pathRaw = trim($page->getPath(), '/');
+            // Derivar paths equivalentes EN/ES asumiendo estructura paralela
+            if ($isEs) {
+                $englishPath = ltrim(substr($pathRaw, 3), '/'); // quitar "es/"
+            } else {
+                $englishPath = $pathRaw;
+            }
+            $spanishPath = trim('es/' . $englishPath, '/');
+
+            $enUrl = $base . '/' . $englishPath;
+            $esUrl = $base . '/' . $spanishPath;
+            if ($englishPath === '') { $enUrl = $base . '/'; }
+            if ($spanishPath === 'es') { $esUrl = $base . '/es/'; }
+        @endphp
+        <meta name="description" content="{{ $page->description ?? $siteDescLoc }}">
+        <link rel="canonical" href="{{ $page->getUrl() }}"/>
+        <meta name="robots" content="index,follow" />
+        <meta name="keywords" content="@php echo $isEs
+            ? 'framework wordpress, antonella framework, desarrollar plugins, programar plugins wordpress, blade, gutenberg, rest api, docker, php 8, consola antonella'
+            : 'wordpress framework, antonella framework, develop plugins, build wordpress plugins, blade, gutenberg, rest api, docker, php 8, antonella cli'; @endphp" />
+        <link rel="alternate" hreflang="en" href="@php echo $enUrl; @endphp" />
+        <link rel="alternate" hreflang="es" href="@php echo $esUrl; @endphp" />
+        <link rel="alternate" hreflang="x-default" href="@php echo $enUrl; @endphp" />
+
+        <meta property="og:site_name" content="{{ $siteNameLoc }}"/>
+        <meta property="og:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $siteNameLoc }}"/>
+        <meta property="og:description" content="{{ $page->description ?? $siteDescLoc }}"/>
         <meta property="og:url" content="{{ $page->getUrl() }}"/>
-        <meta property="og:image" content="/assets/img/antonella-logo.png"/>
+        <meta property="og:image" content="{{ $page->baseUrl }}/assets/img/antonella-logo.png"/>
         <meta property="og:type" content="website"/>
+        <meta property="og:locale" content="@php echo $isEs ? 'es_ES' : 'en_US'; @endphp"/>
+        <meta property="og:locale:alternate" content="@php echo $isEs ? 'en_US' : 'es_ES'; @endphp"/>
 
-        <meta name="twitter:image:alt" content="{{ $page->siteName }}">
+        <meta name="twitter:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $siteNameLoc }}">
+        <meta name="twitter:description" content="{{ $page->description ?? $siteDescLoc }}">
+        <meta name="twitter:image" content="{{ $page->baseUrl }}/assets/img/antonella-logo.png">
+        <meta name="twitter:image:alt" content="{{ $siteNameLoc }}">
         <meta name="twitter:card" content="summary_large_image">
 
         @if ($page->docsearchApiKey && $page->docsearchIndexName)
             <meta name="generator" content="tighten_jigsaw_doc">
         @endif
 
-        <title>{{ $page->siteName }}{{ $page->title ? ' | ' . $page->title : '' }}</title>
+        <title>{{ $siteNameLoc }}{{ $page->title ? ' | ' . $page->title : '' }}</title>
 
         <link rel="home" href="{{ $page->baseUrl }}">
         <link rel="icon" href="/assets/img/antonella-logo.png">
@@ -28,6 +63,23 @@
         <link rel="shortcut icon" href="/assets/img/antonella-logo.png">
 
         @stack('meta')
+
+        <!-- JSON-LD: WebSite with SearchAction -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "{{ $siteNameLoc }}",
+          "url": "{{ $page->baseUrl }}",
+          "description": "{{ $page->description ?? $siteDescLoc }}",
+          "inLanguage": "@php echo (strpos($page->getPath(), '/es/') === 0 || $page->getPath() === '/es') ? 'es' : 'en'; @endphp",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ $page->baseUrl }}/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+        </script>
 
         @if ($page->production)
             <!-- Insert analytics code here -->
