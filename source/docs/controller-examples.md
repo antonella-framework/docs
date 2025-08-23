@@ -1,17 +1,17 @@
 ---
 title: Controller Examples
-description: Practical examples of controllers in Antonella Framework
+description: Practical controller examples in Antonella Framework
 extends: _layouts.documentation
 section: content
 ---
 
 # Controller Examples
 
-Practical examples of controllers in Antonella Framework with real-world use cases.
+Practical controller examples in Antonella Framework with real-world use cases, aligned with the new flow: hooks are registered exclusively from `Config.php` and controller methods must be static or properly referenced from the configuration.
 
-## Basic Controller Example
+## Basic Contact Controller
 
-Here's a simple controller that handles a contact form:
+A simple controller that displays a contact form and processes the submission via AJAX.
 
 ```php
 <?php
@@ -20,6 +20,8 @@ namespace YourPlugin\Controllers;
 
 class ContactController
 {
+    // Hook registration is done in config.php (do not register hooks here)
+    
     public static function display_contact_form($atts)
     {
         $atts = shortcode_atts([
@@ -68,46 +70,49 @@ class ContactController
         }
         
         // Sanitize input
-        $name = sanitize_text_field($_POST['name']);
-        $email = sanitize_email($_POST['email']);
-        $phone = sanitize_text_field($_POST['phone']);
-        $message = sanitize_textarea_field($_POST['message']);
+        $name = sanitize_text_field($_POST['name'] ?? '');
+        $email = sanitize_email($_POST['email'] ?? '');
+        $phone = sanitize_text_field($_POST['phone'] ?? '');
+        $message = sanitize_textarea_field($_POST['message'] ?? '');
         
-        // Validate required fields
+        // Basic validation
         if (empty($name) || empty($email) || empty($message)) {
-            wp_send_json_error('Please fill in all required fields.');
+            wp_send_json_error('Please complete the required fields.');
         }
         
         // Send email
         $to = get_option('admin_email');
-        $subject = 'New Contact Form Submission';
+        $subject = 'New contact message';
         $body = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";
         
         if (wp_mail($to, $subject, $body)) {
-            wp_send_json_success('Thank you! Your message has been sent.');
+            wp_send_json_success('Thanks! Your message has been sent.');
         } else {
-            wp_send_json_error('Sorry, there was an error sending your message.');
+            wp_send_json_error('An error occurred while sending your message.');
         }
     }
 }
 ```
 
-Config registration (in config.php):
+Registration in Config.php:
 
 ```php
-use YourPlugin\Controllers\ContactController;
+public $add_action = [
+    ['wp_ajax_submit_contact', __NAMESPACE__.'\\Controllers\\ContactController::handle_contact_submission'],
+    ['wp_ajax_nopriv_submit_contact', __NAMESPACE__.'\\Controllers\\ContactController::handle_contact_submission'],
+];
 
-// AJAX handlers
-add_action('wp_ajax_submit_contact', [ContactController::class, 'handle_contact_submission']);
-add_action('wp_ajax_nopriv_submit_contact', [ContactController::class, 'handle_contact_submission']);
-
-// Shortcode
-add_shortcode('contact_form', [ContactController::class, 'display_contact_form']);
+public $shortcodes = [
+    'contact_form' => [
+        'callback' => __NAMESPACE__.'\\Controllers\\ContactController@display_contact_form',
+        'description' => 'Display contact form',
+    ],
+];
 ```
 
-## AJAX Controller Example
+## AJAX Posts Loader Controller
 
-A controller that handles AJAX requests for dynamic content loading:
+Dynamically loads content via AJAX.
 
 ```php
 <?php
@@ -116,6 +121,8 @@ namespace YourPlugin\Controllers;
 
 class AjaxController
 {
+    // Hook registration is done in config.php (do not register hooks here)
+    
     public static function enqueue_scripts()
     {
         wp_enqueue_script(
@@ -134,14 +141,13 @@ class AjaxController
     
     public static function load_posts()
     {
-        // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'load_posts_nonce')) {
+        if (!wp_verify_nonce($_POST['nonce'] ?? '', 'load_posts_nonce')) {
             wp_send_json_error('Security check failed');
         }
         
-        $page = intval($_POST['page']);
-        $posts_per_page = intval($_POST['posts_per_page']) ?: 5;
-        $category = sanitize_text_field($_POST['category']);
+        $page = intval($_POST['page'] ?? 1);
+        $posts_per_page = intval($_POST['posts_per_page'] ?? 5) ?: 5;
+        $category = sanitize_text_field($_POST['category'] ?? '');
         
         $args = [
             'post_type' => 'post',
@@ -181,19 +187,19 @@ class AjaxController
 }
 ```
 
-Config registration (in config.php):
+Registration in Config.php:
 
 ```php
-use YourPlugin\Controllers\AjaxController;
-
-add_action('wp_ajax_load_posts', [AjaxController::class, 'load_posts']);
-add_action('wp_ajax_nopriv_load_posts', [AjaxController::class, 'load_posts']);
-add_action('wp_enqueue_scripts', [AjaxController::class, 'enqueue_scripts']);
+public $add_action = [
+    ['wp_ajax_load_posts', __NAMESPACE__.'\\Controllers\\AjaxController::load_posts'],
+    ['wp_ajax_nopriv_load_posts', __NAMESPACE__.'\\Controllers\\AjaxController::load_posts'],
+    ['wp_enqueue_scripts', __NAMESPACE__.'\\Controllers\\AjaxController::enqueue_scripts'],
+];
 ```
 
-## REST API Controller Example
+## REST API Controller
 
-A controller that creates custom REST API endpoints:
+Defines custom endpoints for the REST API.
 
 ```php
 <?php
@@ -204,24 +210,26 @@ use WP_REST_Response;
 
 class ApiController
 {
+    // Hook registration is done in config.php (do not register hooks here)
+    
     public static function register_routes()
     {
         register_rest_route('your-plugin/v1', '/products', [
             'methods' => 'GET',
-            'callback' => [self::class, 'get_products'],
+            'callback' => [__CLASS__, 'get_products'],
             'permission_callback' => '__return_true'
         ]);
         
-        register_rest_route('your-plugin/v1', '/products/(?P<id>\d+)', [
+        register_rest_route('your-plugin/v1', '/products/(?P<id>\\d+)', [
             'methods' => 'GET',
-            'callback' => [self::class, 'get_product'],
+            'callback' => [__CLASS__, 'get_product'],
             'permission_callback' => '__return_true'
         ]);
         
         register_rest_route('your-plugin/v1', '/products', [
             'methods' => 'POST',
-            'callback' => [self::class, 'create_product'],
-            'permission_callback' => [self::class, 'check_permissions']
+            'callback' => [__CLASS__, 'create_product'],
+            'permission_callback' => [__CLASS__, 'check_permissions']
         ]);
     }
     
@@ -311,10 +319,9 @@ class ApiController
         ]);
         
         if (is_wp_error($post_id)) {
-            return new WP_REST_Response(['error' => 'Failed to create product'], 500);
+            return new WP_REST_Response(['error' => 'Could not create product'], 500);
         }
         
-        // Save meta fields
         update_post_meta($post_id, 'price', $price);
         update_post_meta($post_id, 'product_category', $category);
         
@@ -331,17 +338,17 @@ class ApiController
 }
 ```
 
-Config registration (in config.php):
+Registration in Config.php:
 
 ```php
-use YourPlugin\Controllers\ApiController;
-
-add_action('rest_api_init', [ApiController::class, 'register_routes']);
+public $add_action = [
+    ['rest_api_init', __NAMESPACE__.'\\Controllers\\ApiController::register_routes'],
+];
 ```
 
-## Settings Controller Example
+## Settings Controller
 
-A controller for managing plugin settings:
+Handles plugin settings in the admin area.
 
 ```php
 <?php
@@ -350,7 +357,8 @@ namespace YourPlugin\Controllers;
 
 class SettingsController
 {
-    private static $option_name = 'your_plugin_settings';
+    private $option_name = 'your_plugin_settings';
+    // Hook registration is done in config.php (do not register hooks here)
     
     public static function add_admin_menu()
     {
@@ -359,25 +367,25 @@ class SettingsController
             'Your Plugin',
             'manage_options',
             'your-plugin-settings',
-            [self::class, 'settings_page']
+            [__CLASS__, 'settings_page']
         );
     }
     
     public static function settings_init()
     {
-        register_setting('your_plugin_settings', self::$option_name);
+        register_setting('your_plugin_settings', 'your_plugin_settings');
         
         add_settings_section(
             'general_section',
             'General Settings',
-            [self::class, 'general_section_callback'],
+            function () { echo '<p>Configure the general settings.</p>'; },
             'your-plugin-settings'
         );
         
         add_settings_field(
             'api_key',
             'API Key',
-            [self::class, 'api_key_render'],
+            [__CLASS__, 'api_key_render'],
             'your-plugin-settings',
             'general_section'
         );
@@ -385,7 +393,7 @@ class SettingsController
         add_settings_field(
             'enable_feature',
             'Enable Feature',
-            [self::class, 'enable_feature_render'],
+            [__CLASS__, 'enable_feature_render'],
             'your-plugin-settings',
             'general_section'
         );
@@ -393,28 +401,23 @@ class SettingsController
     
     public static function api_key_render()
     {
-        $options = get_option(self::$option_name);
+        $options = get_option('your_plugin_settings');
         ?>
-        <input type="text" name="<?php echo self::$option_name; ?>[api_key]" 
+        <input type="text" name="your_plugin_settings[api_key]" 
                value="<?php echo isset($options['api_key']) ? esc_attr($options['api_key']) : ''; ?>" 
                class="regular-text" />
-        <p class="description">Enter your API key here.</p>
+        <p class="description">Enter your API key.</p>
         <?php
     }
     
     public static function enable_feature_render()
     {
-        $options = get_option(self::$option_name);
+        $options = get_option('your_plugin_settings');
         ?>
-        <input type="checkbox" name="<?php echo self::$option_name; ?>[enable_feature]" 
+        <input type="checkbox" name="your_plugin_settings[enable_feature]" 
                value="1" <?php checked(isset($options['enable_feature']) ? $options['enable_feature'] : 0, 1); ?> />
         <label>Enable this feature</label>
         <?php
-    }
-    
-    public static function general_section_callback()
-    {
-        echo '<p>Configure the general settings for your plugin.</p>';
     }
     
     public static function settings_page()
@@ -435,7 +438,7 @@ class SettingsController
     
     public static function save_settings()
     {
-        if (!wp_verify_nonce($_POST['nonce'], 'save_settings_nonce')) {
+        if (!wp_verify_nonce($_POST['nonce'] ?? '', 'save_settings_nonce')) {
             wp_send_json_error('Security check failed');
         }
         
@@ -444,36 +447,30 @@ class SettingsController
         }
         
         $settings = [
-            'api_key' => sanitize_text_field($_POST['api_key']),
+            'api_key' => sanitize_text_field($_POST['api_key'] ?? ''),
             'enable_feature' => isset($_POST['enable_feature']) ? 1 : 0
         ];
         
-        update_option(self::$option_name, $settings);
+        update_option('your_plugin_settings', $settings);
         
         wp_send_json_success('Settings saved successfully');
-    }
-    
-    public static function get_setting($key, $default = '')
-    {
-        $options = get_option(self::$option_name);
-        return isset($options[$key]) ? $options[$key] : $default;
     }
 }
 ```
 
-Config registration (in config.php):
+Registration in Config.php:
 
 ```php
-use YourPlugin\Controllers\SettingsController;
-
-add_action('admin_menu', [SettingsController::class, 'add_admin_menu']);
-add_action('admin_init', [SettingsController::class, 'settings_init']);
-add_action('wp_ajax_save_settings', [SettingsController::class, 'save_settings']);
+public $add_action = [
+    ['admin_menu', __NAMESPACE__.'\\Controllers\\SettingsController::add_admin_menu'],
+    ['admin_init', __NAMESPACE__.'\\Controllers\\SettingsController::settings_init'],
+    ['wp_ajax_save_settings', __NAMESPACE__.'\\Controllers\\SettingsController::save_settings'],
+];
 ```
 
-## Shortcode Controller Example
+## Shortcodes Controller
 
-A controller that handles multiple shortcodes:
+Handles multiple shortcodes from a single controller.
 
 ```php
 <?php
@@ -482,6 +479,8 @@ namespace YourPlugin\Controllers;
 
 class ShortcodeController
 {
+    // Shortcodes are registered in config.php (do not register here)
+    
     public static function product_grid_shortcode($atts)
     {
         $atts = shortcode_atts([
@@ -603,7 +602,7 @@ class ShortcodeController
         ], $atts);
         
         if (empty($atts['plans'])) {
-            return '<p>No pricing plans specified.</p>';
+            return '<p>No plans specified.</p>';
         }
         
         $plan_ids = explode(',', $atts['plans']);
@@ -640,11 +639,27 @@ class ShortcodeController
 }
 ```
 
+Registration in Config.php:
+
+```php
+public $shortcodes = [
+    'product_grid' => [
+        'callback' => __NAMESPACE__.'\\Controllers\\ShortcodeController@product_grid_shortcode',
+    ],
+    'testimonials' => [
+        'callback' => __NAMESPACE__.'\\Controllers\\ShortcodeController@testimonials_shortcode',
+    ],
+    'pricing_table' => [
+        'callback' => __NAMESPACE__.'\\Controllers\\ShortcodeController@pricing_table_shortcode',
+    ],
+];
+```
+
 ## Next Steps
 
-- Learn about [working with views](working-with-views)
-- Explore [database operations](database-operations)
-- Check out [API examples](api-examples)
-- Review [testing strategies](localhost-testing)
+- Learn about [working with views](/docs/working-with-views)
+- Explore [database operations](/docs/database-operations)
+- Review [API examples](/docs/api-examples)
+- Check [testing strategies](/docs/localhost-testing)
 
-These examples demonstrate the flexibility and power of Antonella Framework controllers. Use them as starting points for your own implementations! 🚀
+These examples demonstrate the flexibility and power of Antonella Framework controllers. Use them as a starting point for your implementations! 🚀

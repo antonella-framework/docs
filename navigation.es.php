@@ -22,4 +22,12 @@ return [
             'Notas de Versión' => 'es/docs/version-notes',
         ],
     ],
+    'Legal' => [
+        'url' => 'es/docs/legal-notice',
+        'children' => [
+            'Aviso Legal' => 'es/docs/legal-notice',
+            'Política de Privacidad' => 'es/docs/privacy-policy',
+            'Política de Cookies' => 'es/docs/cookie-policy',
+        ],
+    ],
 ];

@@ -37,25 +37,25 @@ return [
         ],
         '1.8' => [
             'name' => 'v1.8',
-            'url' => 'https://antonellaframework.com/documentacion/',
+            'url' => 'https://legacy.antonellaframework.com/documentacion/',
             'status' => 'stable',
             'description' => 'PHP8 compatibility, Docker integration, API endpoints'
         ],
         '1.7' => [
             'name' => 'v1.7',
-            'url' => 'https://antonellaframework.com/documentacion/1-7',
+            'url' => 'https://legacy.antonellaframework.com/documentacion/1-7',
             'status' => 'stable',
             'description' => 'Gutenberg blocks, language files, request improvements'
         ],
         '1.6' => [
             'name' => 'v1.6',
-            'url' => 'https://antonellaframework.com/documentacion/1-6',
+            'url' => 'https://legacy.antonellaframework.com/documentacion/1-6',
             'status' => 'stable',
             'description' => 'Live testing and helpers improvements'
         ],
         '1.5' => [
             'name' => 'v1.5',
-            'url' => 'https://antonellaframework.com/documentacion/1-5',
+            'url' => 'https://legacy.antonellaframework.com/documentacion/1-5',
             'status' => 'stable',
             'description' => 'Blade templating system integration'
         ]

@@ -1,6 +1,6 @@
 ---
 title: Creating Controllers
-description: Learn how to create and use controllers in Antonella Framework following the Config.php-driven flow
+description: Learn how to create and use controllers in Antonella Framework following the new config.php-based flow
 extends: _layouts.documentation
 section: content
 ---
@@ -11,21 +11,21 @@ Updated guide to create and use controllers in Antonella Framework.
 
 ## What is a Controller?
 
-A controller is a PHP class where you define specific functions that you will invoke from `Config.php`. Think of `Config.php` as the plugin’s index. Important: controllers do not register hooks (actions/filters); that registration is centralized in `Config.php`.
+A controller is a PHP class where you define specific functions that you will call from `config.php`. Think of `config.php` as the index of functions of the plugin. Important: controllers do not register hooks (actions/filters); that registration is done in `config.php`.
 
 ## Create your first Controller
 
-### Using Antonella CLI (Recommended)
+### Using the Antonella console (Recommended)
 
-The easiest way is via the console command:
+The easiest way is with the console command:
 
 ```bash
 php antonella create:controller YourNameController
 ```
 
-This creates a new file under `src/Controllers/` with the provided name.
+This creates a new file in `src/Controllers/` with the given name.
 
-### Static Controller template
+### Controller template (static)
 
 ```php
 <?php
@@ -37,11 +37,11 @@ use CH\Security;
 class YourNameController
 {
     /**
-     * Example of a static method invoked from Config.php
+     * Example of static method called from config.php
      */
     public static function example_action()
     {
-        // You can use WordPress functions normally
+        // You can use WordPress functions without issues
         // e.g.: update_option('your_key', 'value');
     }
 }
@@ -67,7 +67,7 @@ class UserController
 }
 ```
 
-### 2. Naming
+### 2. Proper naming
 
 Use descriptive PascalCase names that indicate the purpose:
 
@@ -85,7 +85,7 @@ class UtilsController {}
 
 ### 3. Security first
 
-Always validate and sanitize input. If you use the framework’s `Security` helper, you can do:
+Always validate and sanitize input. If you use the framework `Security` helper, you can do:
 
 ```php
 public static function process_form()
@@ -97,24 +97,24 @@ public static function process_form()
 }
 ```
 
-## Registro desde config.php (sin hooks en el controlador)
+## Registration from config.php (no hooks in the controller)
 
-In Antonella, controllers do NOT register `add_action` or `add_filter`. Hook registration, routes, endpoints, and static calls are defined in `Config.php`, which acts as the plugin’s index. From there, you invoke static controller methods.
+In Antonella, controllers do NOT register `add_action` or `add_filter`. The registration of hooks, routes, endpoints, or static calls is done in `config.php`, which acts as the plugin index. From there, static methods of the controller are invoked.
 
 Notes:
-- If you use action hooks or static invocations, define controller methods as `public static`.
-- You can use WordPress functions inside the class as usual.
+- If you use action-type hooks or static calls, define the controller methods as `public static`.
+- You can use WordPress functions inside the class without problems.
 - You can extend other classes if needed.
 
 ### Real example (based on `src/Controllers/ExampleController.php`)
 
-This controller demonstrates best practices and the `Security` helper with static methods: `process_form()`, `adminPage()`, `api_endpoint()`, `ajax_handler()`.
+This controller shows best practices and usage of the `Security` helper with static methods: `process_form()`, `adminPage()`, `api_endpoint()`, `ajax_handler()`.
 
-Location: `src/Controllers/ExampleController.php` under the `CH\Controllers` namespace.
+Location: `src/Controllers/ExampleController.php` in the `CH\Controllers` namespace.
 
-### How to register it in `Config.php`
+### How to register it in the plugin `config.php`
 
-In your plugin’s `Config.php`, register hooks and endpoints using the `Config` properties, not direct `add_action` calls. Examples:
+In your plugin `Config.php`, register hooks and endpoints using `Config` properties, not direct `add_action` calls. Examples:
 
 ```php
 <?php
@@ -147,87 +147,15 @@ class Config
 }
 ```
 
-Important: since methods are invoked statically, define controller functions as `public static`.
+Important: methods used as callbacks must be `public static`. Centralized registration is done in `Config.php`.
 
-## Database Operations
+## Next steps
 
-### Using WordPress Database API
-
-```php
-public function get_user_data($user_id)
-{
-    global $wpdb;
-    
-    $table_name = $wpdb->prefix . 'your_table_name';
-    
-    $result = $wpdb->get_row(
-        $wpdb->prepare(
-            "SELECT * FROM $table_name WHERE user_id = %d",
-            $user_id
-        )
-    );
-    
-    return $result;
-}
-
-public function save_user_data($user_id, $data)
-{
-    global $wpdb;
-    
-    $table_name = $wpdb->prefix . 'your_table_name';
-    
-    return $wpdb->insert(
-        $table_name,
-        [
-            'user_id' => $user_id,
-            'data' => json_encode($data),
-            'created_at' => current_time('mysql')
-        ],
-        ['%d', '%s', '%s']
-    );
-}
-```
-
-## Error Handling
-
-### Proper Error Handling
-
-```php
-public function process_payment($order_data)
-{
-    try {
-        // Validate order data
-        if (!$this->validate_order($order_data)) {
-            throw new Exception('Invalid order data');
-        }
-        
-        // Process payment
-        $result = $this->payment_gateway->charge($order_data);
-        
-        if (!$result->success) {
-            throw new Exception('Payment failed: ' . $result->error_message);
-        }
-        
-        return $result;
-        
-    } catch (Exception $e) {
-        // Log error
-        error_log('Payment processing error: ' . $e->getMessage());
-        
-        // Return error response
-        return [
-            'success' => false,
-            'error' => $e->getMessage()
-        ];
-    }
-}
-```
-
-## Next Steps
-
-- Learn about [working with views](working-with-views)
-- Explore [database operations](database-operations)
-- Check out [testing your controllers](localhost-testing)
-- See [controller examples](controller-examples)
-
-Need help? Check our [troubleshooting guide](troubleshooting) or visit our [GitHub repository](https://github.com/cehojac/antonella-framework-for-wp).
+- Introduction: docs/introduction
+- Installation: docs/installation
+- Basic setup: docs/basic-setup
+- Antonella Console: docs/console
+- Blade System: docs/blade
+- External Packages: docs/external-packages
+- Docker Environment: docs/docker
+- Version Notes: docs/version-notes

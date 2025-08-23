@@ -7,273 +7,108 @@ section: content
 
 # Cookie Policy
 
-**Effective Date:** January 2024  
-**Last Updated:** January 2024
+**Last updated:** March 25, 2025
 
-## What Are Cookies?
+## Controller
 
-Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and analyzing how you use our documentation.
+The CONTROLLER of the collection, processing, and use of your personal data, under Regulation (EU) 2016/679 (GDPR) and Organic Law 3/2018 (LOPDGDD), is **CH SANTANDER SOFTWARE FACTORY, S.L.**, owner of the website **www.antonellaframework.com**. For more details, see our [Privacy Policy](privacy-policy).
 
-## Types of Cookies We Use
+## What are cookies?
 
-### Essential Cookies
+A cookie is a file that is installed on your device when you access certain web pages. Its main function is to allow the website to collect and retrieve information about your browsing habits, both regarding your behavior as a user and the configuration of your device. Depending on the nature of the information stored and how you use your device, cookies can help identify you and offer a browsing experience tailored to your preferences.
 
-These cookies are necessary for the website to function properly and cannot be disabled.
+Cookies are essential tools in the digital environment, as they record the visitor’s interaction and store specific data. Their use is essential to optimize website operation and perform detailed analysis of user behavior. They also allow a more precise adjustment and personalization of the browsing experience.
 
-| Cookie Name | Purpose | Duration | Type |
-|-------------|---------|----------|------|
-| `session_id` | Maintains your session | Session | Essential |
-| `csrf_token` | Security protection | Session | Essential |
-| `site_preferences` | Remembers your settings | 1 year | Essential |
+## What do we use cookies for and which ones?
 
-**Why we use them:**
-- Ensure website security
-- Remember your language preferences
-- Maintain your session while browsing
-- Enable core website functionality
+On our website, we use cookies for different purposes, specifically:
 
-### Analytics Cookies
+- **Analytics:** These cookies, managed by us and by third parties, allow us to quantify the number of users and perform statistical analyses of how users use our service. By analyzing navigation on our website, we seek to improve the user experience and optimize our services.
+- **Technical:** Cookies that facilitate user navigation on the website and the use of various options or services available on it. For example, they allow traffic control and data communication, identify the user’s session, and provide access to restricted-access web sections.
+- **Security:** Cookies aimed at preventing or hindering attacks against the website, helping maintain the security of our users and their data.
 
-These cookies help us understand how visitors interact with our documentation.
+In addition to the above, there are other types of cookies:
 
-| Cookie Name | Purpose | Duration | Provider |
-|-------------|---------|----------|----------|
-| `_ga` | Distinguishes users | 2 years | Google Analytics |
-| `_ga_*` | Stores session state | 2 years | Google Analytics |
-| `_gid` | Distinguishes users | 24 hours | Google Analytics |
-| `_gat` | Throttles request rate | 1 minute | Google Analytics |
+- **Advertising:** Help manage the website’s advertising spaces, allowing for more effective presentation of relevant ads to users.
+- **Personalization cookies:** Allow the user to access the website with predefined settings, such as the preferred language, offering a more personalized experience.
+- **Social plug-in cookies:** Enable sharing content on social networks, facilitating user interaction with our website.
+- **Geolocation cookies:** We use geolocation cookies to determine the user’s geographic location, which can be useful to provide content or services relevant to their location.
 
-**What we track:**
-- Page views and popular content
-- User navigation patterns
-- Time spent on pages
-- Search queries within documentation
-- Download statistics
-- Error rates and performance metrics
+Likewise, according to their duration, cookies can be classified as **session** or **persistent** cookies. Session cookies expire when the browser is closed. Persistent cookies have a set duration depending on their specific purpose, such as maintaining user identification in the services of **www.antonellaframework.com**, or until they are manually deleted by the user from the browser settings.
 
-**Benefits:**
-- Improve documentation content
-- Optimize user experience
-- Identify and fix issues
-- Understand user needs
+On our website, we use both **first-party** and **third-party** cookies. First-party cookies are those we send to your device and that are exclusively managed by us to optimize the operation of the site. **Third-party cookies** are provided by third parties and are intended to provide us with analytics tools about user interaction with our site. Thanks to these cookies, we obtain information that can help improve the browsing experience and offer a more effective service to our users.
 
-### Functional Cookies
+## Cookies controlled by the publisher
 
-These cookies enhance your experience but are not essential for basic functionality.
+### Technical and functional
 
-| Cookie Name | Purpose | Duration | Type |
-|-------------|---------|----------|------|
-| `theme_preference` | Remembers dark/light mode | 1 year | Functional |
-| `sidebar_state` | Remembers sidebar collapse state | 1 year | Functional |
-| `search_history` | Stores recent searches | 30 days | Functional |
-| `font_size` | Remembers text size preference | 1 year | Functional |
+- **Property:** antonellaframework.com  
+  **Cookie:** drift_aid  
+  **Purpose:** Unique user identifier for Drift (chat)  
+  **Duration:** 1 year and 1 month
 
-**Features enabled:**
-- Dark/light theme switching
-- Collapsible navigation state
-- Search suggestions
-- Accessibility preferences
-- Language selection
+- **Property:** antonellaframework.com  
+  **Cookie:** drift_campaign_refresh  
+  **Purpose:** Detect whether the user is new or returning (Drift)  
+  **Duration:** Expires today
 
-### Performance Cookies
+- **Property:** antonellaframework.com  
+  **Cookie:** driftt_aid  
+  **Purpose:** Persistent Drift user identifier  
+  **Duration:** 1 year and 1 month
 
-These cookies help us optimize website performance and loading times.
+- **Property:** antonellaframework.com  
+  **Cookie:** dwqa_anonymous  
+  **Purpose:** Assign anonymous ID for Q&A participation  
+  **Duration:** 1 year and 1 month
 
-| Cookie Name | Purpose | Duration | Type |
-|-------------|---------|----------|------|
-| `performance_metrics` | Tracks loading times | 7 days | Performance |
-| `cdn_preference` | Optimizes content delivery | 30 days | Performance |
-| `cache_version` | Manages cached content | 1 day | Performance |
+- **Property:** antonellaframework.com  
+  **Cookie:** qtrans_front_language  
+  **Purpose:** Save user’s preferred language  
+  **Duration:** Expires today
 
-## Third-Party Cookies
+### Analytics
 
-### Google Analytics
+- **Property:** .antonellaframework.com  
+  **Cookie:** _ga  
+  **Purpose:** Distinguish unique users in Google Analytics  
+  **Duration:** 1 year and 1 month
 
-We use Google Analytics to understand how users interact with our documentation:
+- **Property:** .antonellaframework.com  
+  **Cookie:** _ga_ZH35429BPC  
+  **Purpose:** Maintain session state in Google Analytics 4  
+  **Duration:** 1 year and 1 month
 
-**Cookies used:**
-- `_ga`, `_ga_*`, `_gid`, `_gat`
+## Third-party cookies
 
-**Data collected:**
-- Anonymous usage statistics
-- Popular pages and content
-- User flow and navigation patterns
-- Geographic information (country/region level)
+Third-party services are outside the publisher’s control. Providers may modify their terms of service, purposes, and use of cookies at any time.
 
-**Privacy controls:**
-- Data is anonymized
-- IP addresses are masked
-- No personally identifiable information
-- You can opt-out using Google's tools
+## Consent for the use of cookies
 
-**Opt-out options:**
-- [Google Analytics Opt-out Browser Add-on](https://tools.google.com/dlpage/gaoptout)
-- Browser cookie settings
-- Our cookie consent tool
+In accordance with this Cookie Policy, the user can decide whether to give explicit consent for the use of cookies that require it. Note that **technical or essential cookies** do not require such consent. However, the user can modify their browser settings to reject the use of cookies if they wish.
 
-### Content Delivery Network (CDN)
+## How to disable or delete cookies
 
-We use CDN services to deliver content faster:
+You can adjust your browser settings to receive notifications about the reception of cookies or to prevent their installation on your device. You can also **block or delete** cookies already stored on your computer using the appropriate settings. Useful links:
 
-**Purpose:**
-- Faster loading times
-- Improved reliability
-- Reduced server load
-- Better user experience
-
-**Cookies:**
-- Minimal technical cookies for routing
-- No personal data collection
-- Automatic deletion after session
+- Firefox: https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences  
+- Chrome: https://support.google.com/chrome/answer/95647?hl=en  
+- Microsoft Edge/IE: https://support.microsoft.com/en-us/topic/delete-and-manage-cookies-7c7c94c0-ae3b-6a0b-82af-6f3e1f7e1d09  
+- Safari: https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac  
+- Opera: https://help.opera.com/en/latest/web-preferences/#cookies
 
-## Cookie Management
+If you prefer not to accept Google Analytics cookies in all browsers, thereby avoiding sharing your information with Google Analytics, you can download an add-on from the following link: https://tools.google.com/dlpage/gaoptout
 
-### Browser Settings
+## Updates and changes to the Cookie Policy
 
-You can control cookies through your browser settings:
+The CONTROLLER reserves the right to update this Cookie Policy to comply with legal or regulatory requirements or adapt to guidelines from the Spanish Data Protection Agency. Users are advised to review it regularly.
 
-#### Chrome
-1. Settings → Privacy and security → Cookies and other site data
-2. Choose your preferred cookie settings
-3. Manage exceptions for specific sites
-
-#### Firefox
-1. Settings → Privacy & Security → Cookies and Site Data
-2. Choose standard, strict, or custom settings
-3. Manage exceptions and clear data
-
-#### Safari
-1. Preferences → Privacy → Cookies and website data
-2. Choose your blocking preferences
-3. Manage website data
-
-#### Edge
-1. Settings → Cookies and site permissions → Cookies and site data
-2. Configure cookie settings
-3. Manage and delete cookies
-
-### Our Cookie Consent Tool
-
-When you first visit our site, you can:
-
-- **Accept All:** Enable all cookies for the best experience
-- **Essential Only:** Use only necessary cookies
-- **Customize:** Choose which categories to enable
-- **Learn More:** Read detailed information about each cookie
-
-### Changing Your Preferences
-
-You can change your cookie preferences at any time:
-
-1. **Cookie Settings Link:** Available in the footer
-2. **Browser Settings:** Use your browser's cookie controls
-3. **Clear Cookies:** Delete existing cookies to reset preferences
-
-## Impact of Disabling Cookies
-
-### Essential Cookies Disabled
-If you disable essential cookies:
-- ❌ Website may not function properly
-- ❌ Security features may be compromised
-- ❌ Preferences won't be saved
-- ❌ Some features may be unavailable
-
-### Analytics Cookies Disabled
-If you disable analytics cookies:
-- ✅ Website functions normally
-- ❌ We can't improve user experience
-- ❌ We can't identify popular content
-- ❌ Performance optimization is limited
-
-### Functional Cookies Disabled
-If you disable functional cookies:
-- ✅ Basic functionality works
-- ❌ Theme preferences won't be saved
-- ❌ Navigation state won't be remembered
-- ❌ Enhanced features unavailable
-
-## Cookie Retention
-
-### Automatic Deletion
-- **Session cookies:** Deleted when you close your browser
-- **Persistent cookies:** Deleted after their expiration date
-- **Analytics cookies:** Automatically cleaned up by Google Analytics
-
-### Manual Deletion
-You can delete cookies manually:
-- Through browser settings
-- Using our cookie management tool
-- By clearing browser data
-
-## Legal Basis
-
-### GDPR Compliance
-Under GDPR, we process cookies based on:
-
-- **Consent:** For analytics and functional cookies
-- **Legitimate Interest:** For essential security cookies
-- **Legal Obligation:** For compliance-related cookies
-
-### Other Jurisdictions
-We comply with cookie laws in all applicable jurisdictions:
-- ePrivacy Directive (EU)
-- CCPA (California)
-- PIPEDA (Canada)
-- Other local privacy laws
-
-## Updates to This Policy
-
-### Change Notifications
-We will notify you of significant changes to this cookie policy:
-
-- **Website banner:** For major changes
-- **Email notification:** If you've subscribed to updates
-- **Version history:** Available on this page
-
-### Review Recommendations
-We recommend reviewing this policy periodically to stay informed about our cookie practices.
-
-## Contact Information
-
-### Cookie-Related Inquiries
-
-For questions about our cookie policy:
-
-**Email:** cehojac@gmail.com  
-**Subject:** Cookie Policy Inquiry  
-**Response Time:** Within 7 business days
-
-### Technical Support
-
-For help with cookie settings:
-
-**GitHub Issues:** [Report technical issues](https://github.com/cehojac/antonella-framework-for-wp/issues)  
-**Documentation:** Check our troubleshooting guides
-
-## Frequently Asked Questions
-
-### Q: Are cookies safe?
-**A:** Yes, cookies are safe. They're just text files and cannot execute code or contain viruses. We only use cookies from trusted providers.
-
-### Q: Can I use the site without cookies?
-**A:** You can use basic functionality with essential cookies only. Some features may be limited without functional cookies.
-
-### Q: How do I clear all cookies?
-**A:** Use your browser's "Clear browsing data" or "Clear cookies" option. This will remove all cookies from all websites.
-
-### Q: Do you share cookie data with third parties?
-**A:** We only share anonymized analytics data with Google Analytics. We never sell or share personal information.
-
-### Q: How often do you update this policy?
-**A:** We review this policy annually and update it when we change our cookie practices or when required by law.
+Any substantial modification to this Cookie Policy will be notified to users by publication on the website or by email to registered users.
 
 ---
-
-**Need Help?** Contact us at cehojac@gmail.com
 
 ## Quick Links
 
 - [Privacy Policy](privacy-policy)
 - [Legal Notice](legal-notice)
 - [Google Analytics Opt-out](https://tools.google.com/dlpage/gaoptout)
-- [Browser Cookie Settings Help](https://support.google.com/chrome/answer/95647)

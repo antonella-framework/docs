@@ -27,7 +27,7 @@
                 <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Latest stable version with full feature set</div>
             </div>
         </a>
-        <a href="https://antonellaframework.com/documentacion/" class="flex items-start gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm border-b border-gray-100 dark:border-gray-700">
+        <a href="https://legacy.antonellaframework.com/documentacion/" class="flex items-start gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-2 min-w-0">
                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                     Stable
@@ -38,7 +38,7 @@
                 <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">PHP8 compatibility, Docker integration, API endpoints</div>
             </div>
         </a>
-        <a href="https://antonellaframework.com/documentacion/1-7" class="flex items-start gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm border-b border-gray-100 dark:border-gray-700">
+        <a href="https://legacy.antonellaframework.com/documentacion/1-7" class="flex items-start gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-2 min-w-0">
                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                     Stable
@@ -49,7 +49,7 @@
                 <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Gutenberg blocks, language files, request improvements</div>
             </div>
         </a>
-        <a href="https://antonellaframework.com/documentacion/1-6" class="flex items-start gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm border-b border-gray-100 dark:border-gray-700">
+        <a href="https://legacy.antonellaframework.com/documentacion/1-6" class="flex items-start gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-2 min-w-0">
                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                     Stable
@@ -60,7 +60,7 @@
                 <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Live testing and helpers improvements</div>
             </div>
         </a>
-        <a href="https://antonellaframework.com/documentacion/1-5" class="flex items-start gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm">
+        <a href="https://legacy.antonellaframework.com/documentacion/1-5" class="flex items-start gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-700 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors duration-150 text-sm">
             <div class="flex items-center gap-2 min-w-0">
                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                     Stable
