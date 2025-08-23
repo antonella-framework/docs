@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="@php echo ((strpos($page->getPath(), '/es/') === 0 || $page->getPath() === '/es') ? 'es' : 'en'); @endphp" class="transition-colors duration-300">
+<html lang="{{ (strpos($page->getPath(), '/es/') === 0 || $page->getPath() === '/es') ? 'es' : 'en' }}" class="transition-colors duration-300">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,12 +29,12 @@
         <meta name="description" content="{{ $page->description ?? $siteDescLoc }}">
         <link rel="canonical" href="{{ $page->getUrl() }}"/>
         <meta name="robots" content="index,follow" />
-        <meta name="keywords" content="@php echo $isEs
+        <meta name="keywords" content="{{ $isEs
             ? 'framework wordpress, antonella framework, desarrollar plugins, programar plugins wordpress, blade, gutenberg, rest api, docker, php 8, consola antonella'
-            : 'wordpress framework, antonella framework, develop plugins, build wordpress plugins, blade, gutenberg, rest api, docker, php 8, antonella cli'; @endphp" />
-        <link rel="alternate" hreflang="en" href="@php echo $enUrl; @endphp" />
-        <link rel="alternate" hreflang="es" href="@php echo $esUrl; @endphp" />
-        <link rel="alternate" hreflang="x-default" href="@php echo $enUrl; @endphp" />
+            : 'wordpress framework, antonella framework, develop plugins, build wordpress plugins, blade, gutenberg, rest api, docker, php 8, antonella cli' }}" />
+        <link rel="alternate" hreflang="en" href="{{ $enUrl }}" />
+        <link rel="alternate" hreflang="es" href="{{ $esUrl }}" />
+        <link rel="alternate" hreflang="x-default" href="{{ $enUrl }}" />
 
         <meta property="og:site_name" content="{{ $siteNameLoc }}"/>
         <meta property="og:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $siteNameLoc }}"/>
@@ -42,8 +42,8 @@
         <meta property="og:url" content="{{ $page->getUrl() }}"/>
         <meta property="og:image" content="{{ $page->baseUrl }}/assets/img/antonella-logo.png"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:locale" content="@php echo $isEs ? 'es_ES' : 'en_US'; @endphp"/>
-        <meta property="og:locale:alternate" content="@php echo $isEs ? 'en_US' : 'es_ES'; @endphp"/>
+        <meta property="og:locale" content="{{ $isEs ? 'es_ES' : 'en_US' }}"/>
+        <meta property="og:locale:alternate" content="{{ $isEs ? 'en_US' : 'es_ES' }}"/>
 
         <meta name="twitter:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $siteNameLoc }}">
         <meta name="twitter:description" content="{{ $page->description ?? $siteDescLoc }}">
@@ -51,7 +51,7 @@
         <meta name="twitter:image:alt" content="{{ $siteNameLoc }}">
         <meta name="twitter:card" content="summary_large_image">
 
-        @if ($page->docsearchApiKey && $page->docsearchIndexName)
+        @if (!empty($page->docsearchApiKey) && !empty($page->docsearchIndexName))
             <meta name="generator" content="tighten_jigsaw_doc">
         @endif
 
@@ -65,23 +65,24 @@
         @stack('meta')
 
         <!-- JSON-LD: WebSite with SearchAction -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "{{ $siteNameLoc }}",
-          "url": "{{ $page->baseUrl }}",
-          "description": "{{ $page->description ?? $siteDescLoc }}",
-          "inLanguage": "@php echo (strpos($page->getPath(), '/es/') === 0 || $page->getPath() === '/es') ? 'es' : 'en'; @endphp",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "{{ $page->baseUrl }}/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        }
-        </script>
+        @php
+            $ld = [
+                '@context' => 'https://schema.org',
+                '@type' => 'WebSite',
+                'name' => $siteNameLoc,
+                'url' => $page->baseUrl,
+                'description' => $page->description ?? $siteDescLoc,
+                'inLanguage' => $isEs ? 'es' : 'en',
+                'potentialAction' => [
+                    '@type' => 'SearchAction',
+                    'target' => rtrim($page->baseUrl, '/') . '/?q={search_term_string}',
+                    'query-input' => 'required name=search_term_string',
+                ],
+            ];
+        @endphp
+        <script type="application/ld+json">{!! json_encode($ld, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 
-        @if ($page->production)
+        @if (!empty($page->production))
             <!-- Insert analytics code here -->
         @endif
 
@@ -556,15 +557,15 @@
 
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
-        <!-- DocSearch CSS removed - using local search -->
+        @if (!empty($page->docsearchApiKey) && !empty($page->docsearchIndexName))
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+        @endif
 
         @viteRefresh()
         <link rel="stylesheet" href="{{ vite('source/_assets/css/main.css') }}">
         <script defer type="module" src="{{ vite('source/_assets/js/main.js') }}"></script>
 
-        @if ($page->docsearchApiKey && $page->docsearchIndexName)
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
-        @endif
+        
     </head>
 
     <body class="flex flex-col justify-between min-h-screen leading-normal font-sans theme-transition">
@@ -644,13 +645,10 @@
 
                 <li>
                     Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
-
-            <li>
-                Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
-                and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
-            </li>
-        </ul>
-    </footer>
+                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
+                </li>
+            </ul>
+        </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
