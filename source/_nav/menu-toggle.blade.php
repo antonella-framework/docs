@@ -1,16 +1,18 @@
-<button class="flex justify-center items-center bg-blue-500 border border-blue-500 h-10 mr-4 px-5 rounded-full lg:hidden focus:outline-hidden"
+<button
+    class="lg:hidden fixed right-4 bottom-6 flex items-center justify-center h-14 w-14 rounded-full text-gray-900 shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+    style="z-index: 70; background-color: #fccc12;"  
     onclick="navMenu.toggle()"
+    aria-label="Abrir menú de navegación"
+    aria-controls="js-nav-menu"
+    aria-expanded="false"
+    id="mobile-nav-toggle"
+    title="Menú"
 >
-    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg"
-        class="fill-current text-white h-9 w-4" viewBox="0 0 32 32"
-    >
-        <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M3.75 5.25a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75zm0 6a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75zm0 6a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75z" clip-rule="evenodd" />
     </svg>
-
-    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg"
-        class="hidden fill-current text-white h-9 w-4" viewBox="0 0 36 30"
-    >
-        <polygon points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "/>
+    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="hidden h-6 w-6" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M6.225 4.811a.75.75 0 0 1 1.06 0L12 9.525l4.715-4.714a.75.75 0 1 1 1.06 1.06L13.06 10.586l4.715 4.714a.75.75 0 1 1-1.06 1.061L12 11.647l-4.715 4.714a.75.75 0 1 1-1.06-1.06l4.714-4.715-4.714-4.714a.75.75 0 0 1 0-1.061z" clip-rule="evenodd" />
     </svg>
 </button>
 
@@ -19,11 +21,45 @@
     const navMenu = {
         toggle() {
             const menu = document.getElementById('js-nav-menu');
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('lg:block');
-            document.getElementById('js-nav-menu-hide').classList.toggle('hidden');
-            document.getElementById('js-nav-menu-show').classList.toggle('hidden');
+            const backdrop = document.getElementById('nav-backdrop');
+            const isOpen = menu.classList.contains('offcanvas-open');
+            if (isOpen) {
+                this.close();
+            } else {
+                menu.classList.remove('offcanvas-closed');
+                menu.classList.add('offcanvas-open');
+                if (backdrop) backdrop.classList.remove('hidden');
+                document.getElementById('js-nav-menu-hide').classList.remove('hidden');
+                document.getElementById('js-nav-menu-show').classList.add('hidden');
+                const btn = document.getElementById('mobile-nav-toggle');
+                if (btn) {
+                    btn.setAttribute('aria-expanded', 'true');
+                    btn.setAttribute('aria-label', 'Cerrar menú de navegación');
+                }
+            }
         },
+        close() {
+            const menu = document.getElementById('js-nav-menu');
+            const backdrop = document.getElementById('nav-backdrop');
+            menu.classList.remove('offcanvas-open');
+            menu.classList.add('offcanvas-closed');
+            if (backdrop) backdrop.classList.add('hidden');
+            document.getElementById('js-nav-menu-hide').classList.add('hidden');
+            document.getElementById('js-nav-menu-show').classList.remove('hidden');
+            const btn = document.getElementById('mobile-nav-toggle');
+            if (btn) {
+                btn.setAttribute('aria-expanded', 'false');
+                btn.setAttribute('aria-label', 'Abrir menú de navegación');
+            }
+        }
     }
+
+    // Close when clicking on backdrop
+    document.addEventListener('DOMContentLoaded', function() {
+        const backdrop = document.getElementById('nav-backdrop');
+        if (backdrop) {
+            backdrop.addEventListener('click', () => navMenu.close());
+        }
+    });
 </script>
 @endpush

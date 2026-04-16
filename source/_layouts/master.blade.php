@@ -172,6 +172,136 @@
                 color: #e2e8f0 !important;
             }
 
+            /* Code blocks: avoid clipping on mobile */
+            .DocSearch-content pre {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                border-radius: 0.5rem;
+            }
+            .DocSearch-content pre code {
+                white-space: pre;
+                word-break: normal;
+            }
+            /* Inline code can wrap */
+            .DocSearch-content :not(pre) > code {
+                white-space: pre-wrap;
+                word-break: break-word;
+            }
+
+            /* Tables and long content */
+            .DocSearch-content table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            /* Off-canvas side nav */
+            .nav-offcanvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 88vw;
+                max-width: 360px;
+                background: #ffffff;
+                border-right: 1px solid #e5e7eb;
+                transform: translateX(-100%);
+                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                padding: 6rem 1rem 1rem 1rem; /* leave space for header */
+                z-index: 60; /* above content, below header */
+            }
+            .dark .nav-offcanvas {
+                background: #0f172a;
+                border-right-color: #475569;
+            }
+            .nav-offcanvas.offcanvas-open { transform: translateX(0); box-shadow: 6px 0 16px rgba(0,0,0,.2); }
+            .nav-offcanvas.offcanvas-closed { transform: translateX(-100%); }
+
+            .nav-backdrop {
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.45);
+                z-index: 50;
+            }
+            .dark .nav-backdrop { background: rgba(0,0,0,0.65); }
+
+            @media (min-width: 1024px) {
+                .nav-offcanvas,
+                .nav-offcanvas.offcanvas-open,
+                .nav-offcanvas.offcanvas-closed {
+                    position: static;
+                    height: auto;
+                    width: auto;
+                    max-width: none;
+                    transform: none !important;
+                    box-shadow: none;
+                    padding: 0;
+                    border-right: none;
+                    z-index: auto;
+                }
+                /* Ensure desktop sidebar width and remove negative margins from legacy CSS */
+                .nav-menu {
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
+                    margin-top: 0 !important;
+                    width: auto !important;
+                    flex: 0 0 33.333333%;
+                    max-width: 33.333333%;
+                    position: relative;
+                    z-index: 0;
+                    border-right: 1px solid rgba(148,163,184,0.15); /* subtle separator */
+                    padding-right: 1.5rem; /* lg:pr-6 equivalent */
+                }
+                /* Ensure main content takes the remaining width */
+                .DocSearch-content {
+                    position: relative;
+                    z-index: 1;
+                    overflow: visible;
+                    flex: 0 0 66.666667%;
+                    max-width: 66.666667%;
+                }
+                .nav-backdrop { display: none !important; }
+            }
+
+            /* Mobile adjustments */
+            @media (max-width: 640px) {
+                /* Header stacks nicely */
+                header.header-theme .container {
+                    flex-wrap: wrap;
+                    gap: 0.5rem;
+                }
+                header.header-theme {
+                    height: auto !important;
+                    padding-top: 0.5rem !important;
+                    padding-bottom: 0.5rem !important;
+                }
+                /* Brand title smaller */
+                header .text-blue-900 {
+                    font-size: 1rem !important;
+                    padding-right: 0.25rem !important;
+                }
+                /* Search input full width on mobile */
+                #search-input {
+                    min-width: 0 !important;
+                    width: 100% !important;
+                }
+                /* Right controls container wraps */
+                header .flex-1.text-right {
+                    width: 100%;
+                    justify-content: space-between;
+                    gap: 0.5rem;
+                }
+                /* Side nav displayed as full-width panel when toggled */
+                .nav-menu {
+                    width: 100%;
+                    margin-top: 0.5rem;
+                }
+                /* Code font size slightly smaller */
+                .DocSearch-content pre,
+                .DocSearch-content code {
+                    font-size: 0.95rem;
+                }
+            }
+
             /* Theme toggle button styles */
             .theme-toggle {
                 position: relative;
@@ -250,6 +380,13 @@
 
             .dark nav a.active {
                 color: #fccc12 !important;
+            }
+
+            /* GitHub button: force dark text in both themes */
+            nav a.github-nav-btn,
+            .dark nav a.github-nav-btn,
+            .dark nav a.github-nav-btn:hover {
+                color: #1a202c !important;
             }
 
             /* Footer links */
