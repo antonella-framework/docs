@@ -792,16 +792,34 @@
         </main>
 
         <footer class="text-center text-sm mt-12 py-4 footer-theme" role="contentinfo">
-            <ul class="flex flex-col md:flex-row justify-center">
-                <li class="md:mr-2">
-                    &copy; <a href="https://tighten.co" title="Tighten website">Tighten</a> {{ date('Y') }}.
-                </li>
-
-                <li>
-                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
-                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
-                </li>
-            </ul>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-4">
+                @if ($isEs)
+                    <a href="/es/docs/legal-notice" class="hover:text-yellow-400 transition-colors">Aviso Legal</a>
+                    <span class="text-gray-500">•</span>
+                    <a href="/es/docs/privacy-policy" class="hover:text-yellow-400 transition-colors">Política de Privacidad</a>
+                    <span class="text-gray-500">•</span>
+                    <a href="/es/docs/cookie-policy" class="hover:text-yellow-400 transition-colors">Política de Cookies</a>
+                @else
+                    <a href="/docs/legal-notice" class="hover:text-yellow-400 transition-colors">Legal Notice</a>
+                    <span class="text-gray-500">•</span>
+                    <a href="/docs/privacy-policy" class="hover:text-yellow-400 transition-colors">Privacy Policy</a>
+                    <span class="text-gray-500">•</span>
+                    <a href="/docs/cookie-policy" class="hover:text-yellow-400 transition-colors">Cookie Policy</a>
+                @endif
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-2 text-gray-500">
+                @if ($isEs)
+                    <span>Antonella está hecho con amor por <a href="https://carlos-herrera.com" class="text-yellow-400 hover:text-yellow-300 transition-colors">Carlos Herrera</a></span>
+                    <span class="text-gray-500">para la comunidad <a href="https://wordpress.org" class="text-yellow-400 hover:text-yellow-300 transition-colors">WordPress</a></span>
+                    <span class="text-gray-500">•</span>
+                    <a href="https://github.com/cehojac/antonella-framework-for-wp" class="text-yellow-400 hover:text-yellow-300 transition-colors">Repositorio</a>
+                @else
+                    <span>Antonella made with love by <a href="https://carlos-herrera.com" class="text-yellow-400 hover:text-yellow-300 transition-colors">Carlos Herrera</a></span>
+                    <span class="text-gray-500">for the <a href="https://wordpress.org" class="text-yellow-400 hover:text-yellow-300 transition-colors">WordPress</a> community</span>
+                    <span class="text-gray-500">•</span>
+                    <a href="https://github.com/cehojac/antonella-framework-for-wp" class="text-yellow-400 hover:text-yellow-300 transition-colors">Repository</a>
+                @endif
+            </div>
         </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>

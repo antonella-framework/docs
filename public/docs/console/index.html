@@ -666,8 +666,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
         
-                <link rel="stylesheet" href="/assets/build/assets/main-BJjdJv0g.css">
-        <script defer type="module" src="/assets/build/assets/main-l0sNRNKZ.js"></script>
+        <script type="module" src="http://[::1]:5173/@vite/client"></script>        <link rel="stylesheet" href="http://[::1]:5173/source/_assets/css/main.css">
+        <script defer type="module" src="http://[::1]:5173/source/_assets/js/main.js"></script>
 
         
     </head>
@@ -1403,16 +1403,19 @@ php antonella namespace MYNAMESPACE
         </main>
 
         <footer class="text-center text-sm mt-12 py-4 footer-theme" role="contentinfo">
-            <ul class="flex flex-col md:flex-row justify-center">
-                <li class="md:mr-2">
-                    &copy; <a href="https://tighten.co" title="Tighten website">Tighten</a> 2026.
-                </li>
-
-                <li>
-                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
-                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
-                </li>
-            </ul>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-4">
+                                    <a href="/docs/legal-notice" class="hover:text-yellow-400 transition-colors">Legal Notice</a>
+                    <span class="text-gray-500">•</span>
+                    <a href="/docs/privacy-policy" class="hover:text-yellow-400 transition-colors">Privacy Policy</a>
+                    <span class="text-gray-500">•</span>
+                    <a href="/docs/cookie-policy" class="hover:text-yellow-400 transition-colors">Cookie Policy</a>
+                            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-2 text-gray-500">
+                                    <span>Antonella made with love by <a href="https://carlos-herrera.com" class="text-yellow-400 hover:text-yellow-300 transition-colors">Carlos Herrera</a></span>
+                    <span class="text-gray-500">for the <a href="https://wordpress.org" class="text-yellow-400 hover:text-yellow-300 transition-colors">WordPress</a> community</span>
+                    <span class="text-gray-500">•</span>
+                    <a href="https://github.com/cehojac/antonella-framework-for-wp" class="text-yellow-400 hover:text-yellow-300 transition-colors">Repository</a>
+                            </div>
         </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
