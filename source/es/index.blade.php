@@ -58,6 +58,35 @@
 
         <hr class="block my-12 border-gray-700">
 
+        <div class="bg-gray-800 rounded-2xl p-8 mb-12 border border-blue-500/30 shadow-2xl shadow-blue-500/10">
+            <div class="flex flex-col lg:flex-row items-center gap-8">
+                <div class="w-20 h-20 bg-blue-500/20 rounded-2xl flex items-center justify-center shrink-0 border border-blue-500/30">
+                    <svg class="w-10 h-10" style="color:#61dafb" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true">
+                        <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"></circle>
+                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)"></ellipse>
+                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"></ellipse>
+                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"></ellipse>
+                    </svg>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="inline-flex items-center px-2 py-1 rounded text-xs font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/30">Nuevo</span>
+                        <span class="text-sm text-gray-400">v1.9.3</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white mb-3">Integración Nativa con ReactJS</h2>
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        Renderiza componentes React desde tus controladores, shortcodes y páginas de administración. Impulsado por Vite con HMR, aislamiento de estilos y configuración cero.
+                    </p>
+                    <a href="/es/docs/react" class="inline-flex items-center bg-blue-500 hover:bg-blue-400 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-blue-500/25">
+                        Descubre la Integración con React
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="grid md:grid-cols-3 gap-8 mb-16">
             <div class="text-center">
                 <div class="w-16 h-16 feature-icon-bg rounded-full flex items-center justify-center mx-auto mb-4">
