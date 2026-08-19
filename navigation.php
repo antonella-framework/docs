@@ -14,7 +14,7 @@ return [
         'children' => [
             'Antonella Console' => 'docs/console',
             'Gutenberg Blocks' => 'docs/blocks',
-            'React Integration' => 'docs/react',
+            'React Integration (new)' => 'docs/react',
             'Blade' => 'docs/blade',
             'External Packages' => 'docs/external-packages',
             'Docker Environment' => 'docs/docker',
