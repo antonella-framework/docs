@@ -924,6 +924,15 @@
     </li>
             <li class="pl-4">
             
+        <a href="/es/docs/react"
+            class="lvl1   nav-menu__item hover:text-blue-500"
+        >
+            Integración con React
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
         <a href="/es/docs/blade"
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
@@ -979,46 +988,6 @@
     </ul>
 
     </li>
-            <li class="pl-4">
-            
-        <a href="/es/docs/legal-notice"
-            class="lvl0   nav-menu__item hover:text-blue-500"
-        >
-            Legal
-        </a>
-    
-            
-        <ul class="my-0">
-            <li class="pl-4">
-            
-        <a href="/es/docs/legal-notice"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Aviso Legal
-        </a>
-    
-    </li>
-            <li class="pl-4">
-            
-        <a href="/es/docs/privacy-policy"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Política de Privacidad
-        </a>
-    
-    </li>
-            <li class="pl-4">
-            
-        <a href="/es/docs/cookie-policy"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Política de Cookies
-        </a>
-    
-    </li>
-    </ul>
-
-    </li>
     </ul>
 
 <div class="mt-6 px-4">
@@ -1052,7 +1021,26 @@
 
 <p>Esta página contiene las notas de lanzamiento y changelog para todas las versiones de Antonella Framework.</p>
 
-<h2>Versión 1.9 (Actual)</h2>
+<h2>Versión 1.9.3 (Actual)</h2>
+
+<p><strong>Rama:</strong> <a href="https://github.com/cehojac/antonella-framework-for-wp/tree/1.9.x"><code>1.9.x</code></a></p>
+
+<h3>Nuevas Características</h3>
+
+<ul>
+<li>✅ <strong>Integración Nativa con React</strong> - Integración completa de ReactJS + Vite: <code>php antonella add react</code> / <code>php antonella remove react</code></li>
+<li>✅ <strong>Generador de Componentes React</strong> - <code>php antonella react NombreComponente</code> con soporte de subcarpetas (p. ej. <code>Texts/TextInput</code>)</li>
+<li>✅ <strong>Controladores con React</strong> - Flag <code>--react</code> / <code>--react=NombreComponente</code> en <code>php antonella make</code> para crear un controlador conectado a un componente React</li>
+<li>✅ <strong>Renderizador PHP de React</strong> - Nueva API <code>React::render()</code>, <code>React::share()</code> y <code>React::lazy()</code> (<code>src/Core/React.php</code>, <code>src/Helpers/react.php</code>)</li>
+<li>✅ <strong>Aislamiento de Estilos CSS</strong> - Modos opcionales de reset/normalize con alcance limitado para evitar que los estilos del tema afecten a los componentes React</li>
+<li>✅ <strong>Empaquetado Seguro para Producción</strong> - <code>php antonella makeup</code> cambia automáticamente React a modo producción durante el empaquetado y restaura el modo desarrollo al finalizar</li>
+</ul>
+
+<p>Consulta la guía completa de <a href="/es/docs/react">Integración con React</a>.</p>
+
+<hr />
+
+<h2>Versión 1.9</h2>
 
 <p><strong>Fecha de Lanzamiento:</strong> 2025</p>
 

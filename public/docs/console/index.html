@@ -924,6 +924,15 @@
     </li>
             <li class="pl-4">
             
+        <a href="/docs/react"
+            class="lvl1   nav-menu__item hover:text-blue-500"
+        >
+            React Integration
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
         <a href="/docs/blade"
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
@@ -973,46 +982,6 @@
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Version Notes
-        </a>
-    
-    </li>
-    </ul>
-
-    </li>
-            <li class="pl-4">
-            
-        <a href="/docs/legal-notice"
-            class="lvl0   nav-menu__item hover:text-blue-500"
-        >
-            Legal
-        </a>
-    
-            
-        <ul class="my-0">
-            <li class="pl-4">
-            
-        <a href="/docs/legal-notice"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Legal Notice
-        </a>
-    
-    </li>
-            <li class="pl-4">
-            
-        <a href="/docs/privacy-policy"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Privacy Policy
-        </a>
-    
-    </li>
-            <li class="pl-4">
-            
-        <a href="/docs/cookie-policy"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Cookie Policy
         </a>
     
     </li>
@@ -1096,6 +1065,12 @@
 
 <p>Creates: <code>app/Controllers/UserController.php</code></p>
 
+<p><strong>With React (v1.9.3+):</strong> pass <code>--react</code> (or <code>--react=ComponentName</code>) to generate a controller that renders a React component via <code>React::render()</code>, and auto-scaffold the matching <code>.jsx</code> file. Requires React to be installed first (<code>php antonella add react</code>). See <a href="/docs/react">React Integration</a>.</p>
+
+<pre><code class="language-bash">php antonella make UserController --react
+php antonella make UserController --react=UserDashboard
+</code></pre>
+
 <hr />
 
 <h3><code>helper</code> - Create Helper</h3>
@@ -1162,6 +1137,17 @@
 
 <hr />
 
+<h3><code>react</code> - Create React Component (v1.9.3+)</h3>
+
+<p>Scaffolds a new React component inside <code>resources/js/Pages/</code>. Requires React to be installed (<code>php antonella add react</code>).</p>
+
+<pre><code class="language-bash">php antonella react ComponentName
+</code></pre>
+
+<p>Subfolders are supported, e.g. <code>php antonella react Texts/TextInput</code> creates <code>resources/js/Pages/Texts/TextInput.jsx</code>. See <a href="/docs/react">React Integration</a> for the full guide.</p>
+
+<hr />
+
 <h3><code>namespace</code> - Update Namespace</h3>
 
 <p>Changes the namespace of your plugin project.</p>
@@ -1220,19 +1206,23 @@ Use <code>-d</code> to run in detached mode.</p>
 
 <h3><code>add</code> - Add Components</h3>
 
-<p>Adds new components or features to your plugin.</p>
+<p>Adds new components or features to your plugin. Available modules: <code>blade</code>, <code>dd</code>, <code>model</code>, <code>action</code>, <code>react</code>.</p>
 
 <pre><code class="language-bash">php antonella add [component]
 </code></pre>
+
+<p><strong><code>php antonella add react</code></strong> (v1.9.3+) installs native ReactJS integration (Vite config, <code>resources/js/</code> structure, <code>Config/React.php</code>, <code>src/Core/React.php</code> renderer, helpers and an example controller). See <a href="/docs/react">React Integration</a>.</p>
 
 <hr />
 
 <h3><code>remove</code> - Remove Components</h3>
 
-<p>Removes components from your plugin.</p>
+<p>Removes components from your plugin. Available modules: <code>blade</code>, <code>dd</code>, <code>model</code>, <code>react</code>.</p>
 
 <pre><code class="language-bash">php antonella remove [component]
 </code></pre>
+
+<p><strong><code>php antonella remove react</code></strong> removes all React integration files after confirmation.</p>
 
 <hr />
 

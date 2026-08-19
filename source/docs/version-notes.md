@@ -9,7 +9,23 @@ section: content
 
 This page contains the release notes and changelog for all versions of Antonella Framework.
 
-## Version 1.9 (Current)
+## Version 1.9.3 (Current)
+
+**Branch:** [`1.9.x`](https://github.com/cehojac/antonella-framework-for-wp/tree/1.9.x)
+
+### New Features
+- ✅ **Native React Integration** - Full ReactJS + Vite integration: `php antonella add react` / `php antonella remove react`
+- ✅ **React Component Generator** - `php antonella react ComponentName` with subfolder support (e.g. `Texts/TextInput`)
+- ✅ **React-aware Controllers** - `--react` / `--react=ComponentName` flag on `php antonella make` to scaffold a controller wired to a React component
+- ✅ **React PHP Renderer** - New `React::render()`, `React::share()` and `React::lazy()` API (`src/Core/React.php`, `src/Helpers/react.php`)
+- ✅ **CSS Style Isolation** - Optional scoped CSS reset/normalize modes to prevent theme styles from bleeding into React components
+- ✅ **Production-safe Packaging** - `php antonella makeup` automatically switches React to production mode during packaging and restores develop mode afterwards
+
+See the full [React Integration](/docs/react) guide.
+
+---
+
+## Version 1.9
 
 **Release Date:** 2025
 

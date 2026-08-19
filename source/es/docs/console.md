@@ -54,6 +54,13 @@ php antonella make ControladorUsuario
 
 Crea: `app/Controllers/ControladorUsuario.php`
 
+**Con React (v1.9.3+):** agrega `--react` (o `--react=NombreComponente`) para generar un controlador que renderiza un componente React mediante `React::render()`, creando automáticamente el archivo `.jsx` correspondiente. Requiere tener React instalado previamente (`php antonella add react`). Consulta [Integración con React](/es/docs/react).
+
+```bash
+php antonella make ControladorUsuario --react
+php antonella make ControladorUsuario --react=PanelUsuario
+```
+
 ---
 
 ### `helper` - Crear Helper
@@ -120,6 +127,17 @@ Crea: Archivos de bloque en el directorio apropiado con componentes JavaScript y
 
 ---
 
+### `react` - Crear Componente React (v1.9.3+)
+Crea un nuevo componente React dentro de `resources/js/Pages/`. Requiere tener React instalado (`php antonella add react`).
+
+```bash
+php antonella react NombreComponente
+```
+
+Se admiten subcarpetas, por ejemplo `php antonella react Texts/TextInput` crea `resources/js/Pages/Texts/TextInput.jsx`. Consulta [Integración con React](/es/docs/react) para la guía completa.
+
+---
+
 ### `namespace` - Actualizar Namespace
 Cambia el namespace de tu proyecto plugin.
 
@@ -178,20 +196,24 @@ Ejecuta tests PHPUnit si están configurados.
 ---
 
 ### `add` - Agregar Componentes
-Agrega nuevos componentes o características a tu plugin.
+Agrega nuevos componentes o características a tu plugin. Módulos disponibles: `blade`, `dd`, `model`, `action`, `react`.
 
 ```bash
 php antonella add [componente]
 ```
 
+**`php antonella add react`** (v1.9.3+) instala la integración nativa con ReactJS (configuración de Vite, estructura `resources/js/`, `Config/React.php`, renderizador `src/Core/React.php`, helpers y un controlador de ejemplo). Consulta [Integración con React](/es/docs/react).
+
 ---
 
 ### `remove` - Eliminar Componentes
-Elimina componentes de tu plugin.
+Elimina componentes de tu plugin. Módulos disponibles: `blade`, `dd`, `model`, `react`.
 
 ```bash
 php antonella remove [componente]
 ```
+
+**`php antonella remove react`** elimina todos los archivos de la integración con React tras confirmación.
 
 ---
 

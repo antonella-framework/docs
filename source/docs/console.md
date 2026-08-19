@@ -54,6 +54,13 @@ php antonella make UserController
 
 Creates: `app/Controllers/UserController.php`
 
+**With React (v1.9.3+):** pass `--react` (or `--react=ComponentName`) to generate a controller that renders a React component via `React::render()`, and auto-scaffold the matching `.jsx` file. Requires React to be installed first (`php antonella add react`). See [React Integration](/docs/react).
+
+```bash
+php antonella make UserController --react
+php antonella make UserController --react=UserDashboard
+```
+
 ---
 
 ### `helper` - Create Helper
@@ -120,6 +127,17 @@ Creates: Block files in the appropriate directory with JavaScript and PHP compon
 
 ---
 
+### `react` - Create React Component (v1.9.3+)
+Scaffolds a new React component inside `resources/js/Pages/`. Requires React to be installed (`php antonella add react`).
+
+```bash
+php antonella react ComponentName
+```
+
+Subfolders are supported, e.g. `php antonella react Texts/TextInput` creates `resources/js/Pages/Texts/TextInput.jsx`. See [React Integration](/docs/react) for the full guide.
+
+---
+
 ### `namespace` - Update Namespace
 Changes the namespace of your plugin project.
 
@@ -178,20 +196,24 @@ Runs PHPUnit tests if configured.
 ---
 
 ### `add` - Add Components
-Adds new components or features to your plugin.
+Adds new components or features to your plugin. Available modules: `blade`, `dd`, `model`, `action`, `react`.
 
 ```bash
 php antonella add [component]
 ```
 
+**`php antonella add react`** (v1.9.3+) installs native ReactJS integration (Vite config, `resources/js/` structure, `Config/React.php`, `src/Core/React.php` renderer, helpers and an example controller). See [React Integration](/docs/react).
+
 ---
 
 ### `remove` - Remove Components
-Removes components from your plugin.
+Removes components from your plugin. Available modules: `blade`, `dd`, `model`, `react`.
 
 ```bash
 php antonella remove [component]
 ```
+
+**`php antonella remove react`** removes all React integration files after confirmation.
 
 ---
 

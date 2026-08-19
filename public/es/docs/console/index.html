@@ -924,6 +924,15 @@
     </li>
             <li class="pl-4">
             
+        <a href="/es/docs/react"
+            class="lvl1   nav-menu__item hover:text-blue-500"
+        >
+            Integración con React
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
         <a href="/es/docs/blade"
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
@@ -973,46 +982,6 @@
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Notas de Versión
-        </a>
-    
-    </li>
-    </ul>
-
-    </li>
-            <li class="pl-4">
-            
-        <a href="/es/docs/legal-notice"
-            class="lvl0   nav-menu__item hover:text-blue-500"
-        >
-            Legal
-        </a>
-    
-            
-        <ul class="my-0">
-            <li class="pl-4">
-            
-        <a href="/es/docs/legal-notice"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Aviso Legal
-        </a>
-    
-    </li>
-            <li class="pl-4">
-            
-        <a href="/es/docs/privacy-policy"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Política de Privacidad
-        </a>
-    
-    </li>
-            <li class="pl-4">
-            
-        <a href="/es/docs/cookie-policy"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Política de Cookies
         </a>
     
     </li>
@@ -1096,6 +1065,12 @@
 
 <p>Crea: <code>app/Controllers/ControladorUsuario.php</code></p>
 
+<p><strong>Con React (v1.9.3+):</strong> agrega <code>--react</code> (o <code>--react=NombreComponente</code>) para generar un controlador que renderiza un componente React mediante <code>React::render()</code>, creando automáticamente el archivo <code>.jsx</code> correspondiente. Requiere tener React instalado previamente (<code>php antonella add react</code>). Consulta <a href="/es/docs/react">Integración con React</a>.</p>
+
+<pre><code class="language-bash">php antonella make ControladorUsuario --react
+php antonella make ControladorUsuario --react=PanelUsuario
+</code></pre>
+
 <hr />
 
 <h3><code>helper</code> - Crear Helper</h3>
@@ -1162,6 +1137,17 @@
 
 <hr />
 
+<h3><code>react</code> - Crear Componente React (v1.9.3+)</h3>
+
+<p>Crea un nuevo componente React dentro de <code>resources/js/Pages/</code>. Requiere tener React instalado (<code>php antonella add react</code>).</p>
+
+<pre><code class="language-bash">php antonella react NombreComponente
+</code></pre>
+
+<p>Se admiten subcarpetas, por ejemplo <code>php antonella react Texts/TextInput</code> crea <code>resources/js/Pages/Texts/TextInput.jsx</code>. Consulta <a href="/es/docs/react">Integración con React</a> para la guía completa.</p>
+
+<hr />
+
 <h3><code>namespace</code> - Actualizar Namespace</h3>
 
 <p>Cambia el namespace de tu proyecto plugin.</p>
@@ -1220,19 +1206,23 @@ Usa <code>-d</code> para ejecutarlo en modo detach.</p>
 
 <h3><code>add</code> - Agregar Componentes</h3>
 
-<p>Agrega nuevos componentes o características a tu plugin.</p>
+<p>Agrega nuevos componentes o características a tu plugin. Módulos disponibles: <code>blade</code>, <code>dd</code>, <code>model</code>, <code>action</code>, <code>react</code>.</p>
 
 <pre><code class="language-bash">php antonella add [componente]
 </code></pre>
+
+<p><strong><code>php antonella add react</code></strong> (v1.9.3+) instala la integración nativa con ReactJS (configuración de Vite, estructura <code>resources/js/</code>, <code>Config/React.php</code>, renderizador <code>src/Core/React.php</code>, helpers y un controlador de ejemplo). Consulta <a href="/es/docs/react">Integración con React</a>.</p>
 
 <hr />
 
 <h3><code>remove</code> - Eliminar Componentes</h3>
 
-<p>Elimina componentes de tu plugin.</p>
+<p>Elimina componentes de tu plugin. Módulos disponibles: <code>blade</code>, <code>dd</code>, <code>model</code>, <code>react</code>.</p>
 
 <pre><code class="language-bash">php antonella remove [componente]
 </code></pre>
+
+<p><strong><code>php antonella remove react</code></strong> elimina todos los archivos de la integración con React tras confirmación.</p>
 
 <hr />
 

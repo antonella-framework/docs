@@ -4,31 +4,31 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-                <meta name="description" content="Release notes and changelog for all versions of Antonella Framework">
-        <link rel="canonical" href="/docs/version-notes"/>
+                <meta name="description" content="Native ReactJS integration for Antonella Framework plugins (v1.9.3+)">
+        <link rel="canonical" href="/docs/react"/>
         <meta name="robots" content="index,follow" />
         <meta name="keywords" content="wordpress framework, antonella framework, develop plugins, build wordpress plugins, blade, gutenberg, rest api, docker, php 8, antonella cli" />
-        <link rel="alternate" hreflang="en" href="/docs/version-notes" />
-        <link rel="alternate" hreflang="es" href="/es/docs/version-notes" />
-        <link rel="alternate" hreflang="x-default" href="/docs/version-notes" />
+        <link rel="alternate" hreflang="en" href="/docs/react" />
+        <link rel="alternate" hreflang="es" href="/es/docs/react" />
+        <link rel="alternate" hreflang="x-default" href="/docs/react" />
 
         <meta property="og:site_name" content="Antonella Framework v1.9"/>
-        <meta property="og:title" content="Version Notes | Antonella Framework v1.9"/>
-        <meta property="og:description" content="Release notes and changelog for all versions of Antonella Framework"/>
-        <meta property="og:url" content="/docs/version-notes"/>
+        <meta property="og:title" content="React Integration | Antonella Framework v1.9"/>
+        <meta property="og:description" content="Native ReactJS integration for Antonella Framework plugins (v1.9.3+)"/>
+        <meta property="og:url" content="/docs/react"/>
         <meta property="og:image" content="/assets/img/antonella-logo.png"/>
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content="en_US"/>
         <meta property="og:locale:alternate" content="es_ES"/>
 
-        <meta name="twitter:title" content="Version Notes | Antonella Framework v1.9">
-        <meta name="twitter:description" content="Release notes and changelog for all versions of Antonella Framework">
+        <meta name="twitter:title" content="React Integration | Antonella Framework v1.9">
+        <meta name="twitter:description" content="Native ReactJS integration for Antonella Framework plugins (v1.9.3+)">
         <meta name="twitter:image" content="/assets/img/antonella-logo.png">
         <meta name="twitter:image:alt" content="Antonella Framework v1.9">
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Antonella Framework v1.9 | Version Notes</title>
+        <title>Antonella Framework v1.9 | React Integration</title>
 
         <link rel="home" href="">
         <link rel="icon" href="/assets/img/antonella-logo.png">
@@ -37,7 +37,7 @@
 
         
         <!-- JSON-LD: WebSite with SearchAction -->
-                <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Antonella Framework v1.9","url":"","description":"Release notes and changelog for all versions of Antonella Framework","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+                <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Antonella Framework v1.9","url":"","description":"Native ReactJS integration for Antonella Framework plugins (v1.9.3+)","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 
         
         <script>
@@ -925,7 +925,7 @@
             <li class="pl-4">
             
         <a href="/docs/react"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             React Integration
         </a>
@@ -979,7 +979,7 @@
             <li class="pl-4">
             
         <a href="/docs/version-notes"
-            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
+            class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Version Notes
         </a>
@@ -1017,261 +1017,261 @@
             <div class="mb-6 p-4 rounded-lg border border-yellow-300 bg-yellow-50 text-gray-900 dark:bg-gray-800 dark:border-yellow-600 dark:text-gray-100">
                                     <strong>Advanced technical docs:</strong> check the <a href="https://deepwiki.com/cehojac/antonella-framework-for-wp" class="underline text-yellow-700 dark:text-yellow-400 hover:text-yellow-800 dark:hover:text-yellow-300" target="_blank" rel="noopener">Deep Wiki</a> for internals, architecture, design decisions, and advanced guides.
                             </div>
-            <h1>Version Notes</h1>
+            <h1>React Integration</h1>
 
-<p>This page contains the release notes and changelog for all versions of Antonella Framework.</p>
+<p>Starting with <strong>version 1.9.3</strong>, Antonella Framework ships with native ReactJS integration. It wires up Vite, React and a lightweight PHP renderer (inspired by the Inertia.js WordPress adapter architecture) so you can render React components from your controllers, shortcodes and admin pages without leaving the Antonella workflow.</p>
 
-<h2>Version 1.9.3 (Current)</h2>
-
-<p><strong>Branch:</strong> <a href="https://github.com/cehojac/antonella-framework-for-wp/tree/1.9.x"><code>1.9.x</code></a></p>
-
-<h3>New Features</h3>
+<h2>Requirements</h2>
 
 <ul>
-<li>✅ <strong>Native React Integration</strong> - Full ReactJS + Vite integration: <code>php antonella add react</code> / <code>php antonella remove react</code></li>
-<li>✅ <strong>React Component Generator</strong> - <code>php antonella react ComponentName</code> with subfolder support (e.g. <code>Texts/TextInput</code>)</li>
-<li>✅ <strong>React-aware Controllers</strong> - <code>--react</code> / <code>--react=ComponentName</code> flag on <code>php antonella make</code> to scaffold a controller wired to a React component</li>
-<li>✅ <strong>React PHP Renderer</strong> - New <code>React::render()</code>, <code>React::share()</code> and <code>React::lazy()</code> API (<code>src/Core/React.php</code>, <code>src/Helpers/react.php</code>)</li>
-<li>✅ <strong>CSS Style Isolation</strong> - Optional scoped CSS reset/normalize modes to prevent theme styles from bleeding into React components</li>
-<li>✅ <strong>Production-safe Packaging</strong> - <code>php antonella makeup</code> automatically switches React to production mode during packaging and restores develop mode afterwards</li>
+<li>Node.js and npm installed locally</li>
+<li>A correctly installed Antonella project</li>
+<li>Basic React/JSX knowledge</li>
 </ul>
 
-<p>See the full <a href="/docs/react">React Integration</a> guide.</p>
+<h2>Installing React</h2>
 
-<hr />
+<p>Run the <code>add react</code> command from your project root:</p>
 
-<h2>Version 1.9</h2>
-
-<p><strong>Release Date:</strong> 2025</p>
-
-<h3>New Features</h3>
-
-<ul>
-<li>✅ <strong>Complete Documentation Site</strong> - New Jigsaw-based documentation with multilingual support</li>
-<li>✅ <strong>Enhanced Console Commands</strong> - Improved <code>php antonella makeup</code> and additional commands</li>
-<li>✅ <strong>Docker Integration</strong> - Streamlined Docker development environment</li>
-<li>✅ <strong>Search Functionality</strong> - Built-in documentation search</li>
-<li>✅ <strong>Version Management</strong> - Support for multiple documentation versions</li>
-</ul>
-
-<h3>Improvements</h3>
-
-<ul>
-<li>🔧 <strong>Better Developer Experience</strong> - Improved scaffolding and project structure</li>
-<li>🔧 <strong>Enhanced Multilingual Support</strong> - English and Spanish documentation</li>
-<li>🔧 <strong>Modern UI/UX</strong> - Professional documentation interface with dark mode</li>
-</ul>
-
-<hr />
-
-<h2>Version 1.8</h2>
-
-<h3>PHP8 Compatibility</h3>
-
-<ul>
-<li>✅ Full compatibility with PHP 8.x</li>
-<li>🔧 Updated codebase to support modern PHP features</li>
-</ul>
-
-<h3>Docker Integration</h3>
-
-<ul>
-<li>✅ Native Docker support for development</li>
-<li>🔧 Easy setup with <code>php antonella docker</code></li>
-<li>🔧 Real-time development at <code>http://localhost:8080</code></li>
-<li>🔧 Console command: <code>php antonella docker</code></li>
-</ul>
-
-<h3>API Endpoints</h3>
-
-<ul>
-<li>✅ Easy REST API creation</li>
-<li>🔧 Simple configuration through <code>Config.php</code> arrays</li>
-<li>🔧 Built-in routing system</li>
-</ul>
-
-<h3>Breaking Changes</h3>
-
-<ul>
-<li>❌ <strong>Removed NELLA_URL</strong> - No longer available in this version</li>
-</ul>
-
-<hr />
-
-<h2>Version 1.7</h2>
-
-<h3>Gutenberg Blocks</h3>
-
-<ul>
-<li>✅ <strong>Block Creation</strong> - New command <code>php antonella block</code></li>
-<li>🔧 Easy Gutenberg block scaffolding</li>
-<li>🔧 Modern WordPress editor integration</li>
-</ul>
-
-<h3>Language Support</h3>
-
-<ul>
-<li>✅ <strong>POT Files</strong> - Default language file generation</li>
-<li>🔧 Internationalization improvements</li>
-<li>🔧 Better translation workflow</li>
-</ul>
-
-<h3>Request Improvements</h3>
-
-<ul>
-<li>🔧 <strong>Enhanced POST/GET handling</strong> - Better request processing</li>
-<li>🔧 <strong>Helper improvements</strong> - More utility functions</li>
-<li>🔧 <strong>PostType adjustments</strong> - Improved custom post type creation</li>
-</ul>
-
-<hr />
-
-<h2>Version 1.6</h2>
-
-<h3>Live Testing</h3>
-
-<ul>
-<li>✅ <strong>Real-time testing environment</strong></li>
-<li>🔧 Improved development workflow</li>
-<li>🔧 Better debugging capabilities</li>
-</ul>
-
-<h3>Helpers</h3>
-
-<ul>
-<li>🔧 <strong>Enhanced helper system</strong></li>
-<li>🔧 More utility functions</li>
-<li>🔧 Better code organization</li>
-</ul>
-
-<hr />
-
-<h2>Version 1.5</h2>
-
-<h3>Blade Templating</h3>
-
-<ul>
-<li>✅ <strong>Laravel Blade Integration</strong> - Full Blade templating support</li>
-<li>🔧 Modern templating system</li>
-<li>🔧 Better view organization</li>
-</ul>
-
-<h3>Console Improvements</h3>
-
-<ul>
-<li>✅ <strong>New console commands</strong></li>
-<li>🔧 Automated namespace handling</li>
-<li>🔧 Help system: <code>php antonella help</code></li>
-</ul>
-
-<h3>Installation Changes</h3>
-
-<ul>
-<li>🔧 <strong>New installation method:</strong></li>
-</ul>
-
-<pre><code class="language-bash">composer create-project --prefer-dist cehojac/antonella-framework-for-wp:dev-master my-awesome-plugin
+<pre><code class="language-bash">php antonella add react
 </code></pre>
 
-<h3>New Features</h3>
+<p>This command:</p>
 
 <ul>
-<li>✅ <strong>Widget creation</strong> - <code>php antonella widget</code></li>
-<li>✅ <strong>Automatic folder creation</strong> - Views and cache directories</li>
-<li>✅ <strong>YouTube channel</strong> - <a href="http://tipeos.com/anto">Learning resources</a></li>
-</ul>
-
-<hr />
-
-<h2>Version 1.2</h2>
-
-<h3>Widget System</h3>
+<li>Creates or updates <code>package.json</code> with <code>react</code>, <code>react-dom</code>, <code>@vitejs/plugin-react</code> and <code>vite</code>.</li>
+<li>Creates <code>vite.config.js</code> configured to build to <code>assets/dist</code> with manifest support.</li>
+<li>Creates the <code>resources/js/</code> directory structure:
 
 <ul>
-<li>✅ <strong>Console widget creation</strong> - <code>php antonella widget</code></li>
-<li>🔧 Performance improvements</li>
-<li>🔧 System optimizations</li>
+<li><code>resources/js/app.jsx</code> — the entry point that auto-discovers and mounts components.</li>
+<li><code>resources/js/Pages/</code> — where your React components live.</li>
+<li><code>resources/js/Pages/ExampleComponent.jsx</code> and <code>Card.jsx</code> — example components.</li>
+<li><code>resources/js/Pages/HelloWorld.jsx</code> — a full demo component (counter, live clock, shared props).</li>
+</ul></li>
+<li>Creates <code>Config/React.php</code> with your app configuration (<code>app_key</code>, <code>container_id</code>, <code>app_env</code>, <code>vite_server</code>, <code>build_path</code>, <code>entry_point</code>, style isolation, etc.).</li>
+<li>Creates the PHP renderer at <code>src/Core/React.php</code>.</li>
+<li>Creates global helper functions at <code>src/Helpers/react.php</code> (<code>react()</code>, <code>react_share()</code>, <code>react_lazy()</code>).</li>
+<li>Creates <code>src/Controllers/ExampleReactController.php</code> demonstrating an admin page and a shortcode.</li>
+<li>Registers an example admin menu entry ("Hello World with React") and a <code>[hello_world]</code> shortcode in <code>src/Config.php</code>.</li>
 </ul>
 
-<hr />
+<p>If React is already installed, the command asks for confirmation before overwriting existing files.</p>
 
-<h2>Version 1.1</h2>
+<p>After installation:</p>
 
-<h3>Custom Post Types</h3>
+<pre><code class="language-bash">npm install
+npm run dev     # development, with Vite HMR
+npm run build   # production build (outputs to assets/dist with a manifest.json)
+</code></pre>
+
+<h2>Removing React</h2>
+
+<pre><code class="language-bash">php antonella remove react
+</code></pre>
+
+<p>After confirmation, this removes <code>Config/React.php</code>, <code>src/Core/React.php</code>, <code>src/Helpers/react.php</code>, <code>resources/js/</code>, <code>vite.config.js</code>, <code>package.json</code>, <code>package-lock.json</code>, <code>assets/dist/</code> and <code>node_modules/</code>. It does <strong>not</strong> modify <code>src/Config.php</code> or your controllers — remove the React menu entry/shortcode manually if needed.</p>
+
+<h2>Generating components</h2>
+
+<p>Use the <code>react</code> command to scaffold a new component in <code>resources/js/Pages/</code>:</p>
+
+<pre><code class="language-bash">php antonella react ComponentName
+</code></pre>
+
+<p>Subfolders are supported:</p>
+
+<pre><code class="language-bash">php antonella react Texts/TextInput
+# creates resources/js/Pages/Texts/TextInput.jsx
+</code></pre>
+
+<p>This requires React to be installed (<code>src/Core/React.php</code> must exist).</p>
+
+<h2>Controllers with React</h2>
+
+<p>You can scaffold a controller wired to React in one step using the <code>--react</code> flag on <code>make</code>:</p>
+
+<pre><code class="language-bash"># derives the component name from the controller name (UserController -&gt; User)
+php antonella make UserController --react
+
+# explicit component name
+php antonella make UserController --react=UserDashboard
+</code></pre>
+
+<p>This generates a controller that renders the component via <code>React::render()</code>:</p>
+
+<pre><code class="language-php">namespace MYNAMESPACE\Controllers;
+
+use MYNAMESPACE\Core\React;
+
+class UserController
+{
+    public static function index()
+    {
+        echo React::render('UserDashboard', [
+            // Add your props here
+        ]);
+    }
+}
+</code></pre>
+
+<p>If React isn't installed yet, the controller is still created with the standard template, and Antonella reminds you to run <code>php antonella add react</code>.</p>
+
+<h2>Rendering components manually</h2>
+
+<p>Anywhere in your PHP code (controllers, shortcodes, admin pages) you can render a component:</p>
+
+<pre><code class="language-php">use MYNAMESPACE\Core\React;
+
+echo React::render('ComponentName', [
+    'title' =&gt; 'Hello',
+], [
+    'style_isolation' =&gt; true,
+    'style_isolation_mode' =&gt; 'reset',
+]);
+</code></pre>
+
+<p>Or with the global helper (after <code>src/Helpers/react.php</code> is autoloaded):</p>
+
+<pre><code class="language-php">echo react('ComponentName', ['title' =&gt; 'Hello']);
+</code></pre>
 
 <ul>
-<li>🔧 <strong>Improved CPT creation</strong> - Better configuration system</li>
-<li>🔧 <strong>Bug fixes</strong> - Fixed issues from version 1.0</li>
-<li>🔧 <strong>Enhanced functionality</strong> - More reliable post type handling</li>
+<li>Use <code>echo</code> when the render happens inside a callback WordPress expects to print directly (e.g. an admin page callback).</li>
+<li><code>return</code> the value instead when used as a shortcode callback.</li>
 </ul>
 
-<hr />
+<h3>Sharing data with every component</h3>
 
-<h2>Version 1.0 (Initial Release)</h2>
+<pre><code class="language-php">React::share([
+    'user' =&gt; ['name' =&gt; wp_get_current_user()-&gt;display_name],
+    'site' =&gt; ['name' =&gt; get_bloginfo('name')],
+]);
+</code></pre>
 
-<h3>Core Features</h3>
+<p>Define a <code>public static function boot()</code> in your controller to run this once before rendering — <code>React::render()</code> automatically boots the calling controller class the first time it renders.</p>
+
+<h3>Lazy props</h3>
+
+<pre><code class="language-php">React::share('stats', React::lazy(function () {
+    return expensive_calculation();
+}));
+</code></pre>
+
+<h2>Configuration (<code>Config/React.php</code>)</h2>
+
+<table>
+<thead>
+<tr>
+  <th>Key</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>app_key</code></td>
+  <td>Unique key namespacing scripts/containers for this plugin.</td>
+</tr>
+<tr>
+  <td><code>container_id</code></td>
+  <td>Base DOM container id (auto-suffixed per render).</td>
+</tr>
+<tr>
+  <td><code>app_env</code></td>
+  <td><code>develop</code> (Vite dev server + HMR) or <code>production</code> (built assets).</td>
+</tr>
+<tr>
+  <td><code>vite_server</code></td>
+  <td>Vite dev server URL (default <code>http://localhost:3000</code>).</td>
+</tr>
+<tr>
+  <td><code>build_path</code></td>
+  <td>Build output directory, default <code>assets/dist</code>.</td>
+</tr>
+<tr>
+  <td><code>entry_point</code></td>
+  <td>React entry file, default <code>resources/js/app.jsx</code>.</td>
+</tr>
+<tr>
+  <td><code>load_in_admin</code> / <code>load_in_frontend</code></td>
+  <td>Whether to enqueue React assets in wp-admin / the public site.</td>
+</tr>
+<tr>
+  <td><code>version</code></td>
+  <td>Optional cache-busting version string.</td>
+</tr>
+<tr>
+  <td><code>style_isolation</code></td>
+  <td>Injects a scoped CSS reset around the React container. Disabled by default so it doesn't conflict with Tailwind/MUI.</td>
+</tr>
+<tr>
+  <td><code>style_isolation_mode</code></td>
+  <td><code>reset</code> (aggressive, full reset with base typography) or <code>normalize</code> (lighter, box-sizing + margin/padding only).</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>style_isolation</code> and <code>style_isolation_mode</code> can also be overridden per render via the third argument of <code>React::render()</code>.</p>
+
+<h3>Disabling theme styles on full React pages</h3>
+
+<p>For pages that are entirely rendered by React, you may want to dequeue the active theme's stylesheet:</p>
+
+<pre><code class="language-php">class UserController
+{
+    protected static bool $disableThemeStyles = true;
+    // ...
+}
+</code></pre>
+
+<p><code>React::render()</code> reads this property from the calling controller and dequeues styles registered under the active theme's stylesheet/template directory URI.</p>
+
+<h2>Production builds and packaging</h2>
+
+<p><code>php antonella makeup</code> automatically detects React (<code>src/Core/React.php</code>), temporarily switches <code>Config/React.php</code> to <code>app_env =&gt; 'production'</code> while it builds the ZIP, and restores it to <code>develop</code> afterwards — so your local dev workflow is unaffected. Make sure you run <code>npm run build</code> before packaging so <code>assets/dist/.vite/manifest.json</code> exists; otherwise the plugin shows an admin notice when it can't find the manifest.</p>
+
+<h2>Generated structure</h2>
+
+<pre><code>your-plugin/
+├── Config/
+│   └── React.php            # React configuration
+├── resources/
+│   └── js/
+│       ├── app.jsx           # Entry point (auto-mounts components)
+│       └── Pages/
+│           ├── ExampleComponent.jsx
+│           ├── Card.jsx
+│           └── HelloWorld.jsx
+├── src/
+│   ├── Core/
+│   │   └── React.php         # React::render() PHP renderer
+│   ├── Helpers/
+│   │   └── react.php         # react(), react_share(), react_lazy()
+│   └── Controllers/
+│       └── ExampleReactController.php
+├── assets/
+│   └── dist/                 # Production build output (after npm run build)
+├── package.json
+└── vite.config.js
+</code></pre>
+
+<h2>Related commands</h2>
 
 <ul>
-<li>✅ <strong>PSR-4 autoloading</strong> - Modern PHP standards</li>
-<li>✅ <strong>Config.php system</strong> - Centralized configuration</li>
-<li>✅ <strong>Third-party packages</strong> - Composer integration</li>
-<li>✅ <strong>Request handling</strong> - POST and GET classes</li>
-<li>✅ <strong>Custom Post Types</strong> - Easy CPT creation</li>
-<li>✅ <strong>Dashboard integration</strong> - Admin panel content</li>
-<li>✅ <strong>User management</strong> - User class system</li>
-<li>✅ <strong>Install/Uninstall</strong> - Plugin lifecycle management</li>
+<li>Install React: <code>php antonella add react</code></li>
+<li>Remove React: <code>php antonella remove react</code></li>
+<li>Create a component: <code>php antonella react ComponentName</code></li>
+<li>Create a controller + component: <code>php antonella make ControllerName --react</code></li>
+<li>Package plugin (auto-switches React to production): <code>php antonella makeup</code></li>
 </ul>
 
-<h3>Community</h3>
+<h2>Resources</h2>
 
 <ul>
-<li>🤝 <strong>Open source</strong> - Community-driven development</li>
-<li>🤝 <strong>Feedback welcome</strong> - <a href="https://antonellaframework.com/soporte/">Support system</a></li>
-<li>🤝 <strong>Developer-friendly</strong> - Built by developers, for developers</li>
+<li>Vite docs: https://vite.dev</li>
+<li>React docs: https://react.dev</li>
+<li>Antonella Docs: https://antonellaframework.com/documentacion/</li>
 </ul>
-
-<hr />
-
-<h2>Migration Guides</h2>
-
-<h3>Upgrading to 1.9</h3>
-
-<ul>
-<li>Update your documentation references</li>
-<li>Use new console commands</li>
-<li>Take advantage of improved Docker integration</li>
-</ul>
-
-<h3>Upgrading to 1.8</h3>
-
-<ul>
-<li>Remove any references to <code>NELLA_URL</code></li>
-<li>Update to PHP 8 if not already done</li>
-<li>Configure API endpoints if needed</li>
-</ul>
-
-<h3>Upgrading to 1.7</h3>
-
-<ul>
-<li>Update language files to use POT format</li>
-<li>Migrate any custom blocks to new system</li>
-<li>Test POST/GET request handling</li>
-</ul>
-
-<h3>Upgrading to 1.5</h3>
-
-<ul>
-<li>Migrate templates to Blade system</li>
-<li>Update installation method</li>
-<li>Use new console commands</li>
-</ul>
-
-<h2>Support</h2>
-
-<p>For version-specific support and questions:
-- 📧 <a href="https://antonellaframework.com/soporte/">Contact Support</a>
-- 📚 <a href="https://antonellaframework.com/documentacion/">Documentation</a>
-- 🎥 <a href="http://tipeos.com/anto">YouTube Channel</a></p>
         </div>
     </div>
 </section>
